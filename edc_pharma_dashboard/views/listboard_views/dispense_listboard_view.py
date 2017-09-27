@@ -3,10 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from edc_constants.constants import YES
 
-from ...model_wrappers import RequisitionModelWrapper
-from ..listboard_filters import RequisitionListboardViewFilters
+from ..listboard_filters import DispenseListboardViewFilters
 from ..mixins import StudySiteNameQuerysetViewMixin
 from .base_listboard import BaseListboardView
+from edc_pharma_dashboard.model_wrappers.dispense_model_wrapper import DispenseModelWrapper
 
 app_config = django_apps.get_app_config('edc_pharma_dashboard')
 edc_pharma_app_config = django_apps.get_app_config('edc_pharma')

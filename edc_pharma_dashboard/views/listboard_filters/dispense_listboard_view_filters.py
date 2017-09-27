@@ -1,12 +1,7 @@
 from edc_dashboard.listboard_filter import ListboardFilter, ListboardViewFilters
-from edc_lab.models import BoxItem
 
 
-def get_box_items():
-    return BoxItem.objects.all().values('identifier')
-
-
-class RequisitionListboardViewFilters(ListboardViewFilters):
+class DispenseListboardViewFilters(ListboardViewFilters):
 
     all = ListboardFilter(
         name='all',
@@ -38,4 +33,4 @@ class RequisitionListboardViewFilters(ListboardViewFilters):
     single_dose = ListboardFilter(
         label='Enrolled',
         position=50,
-        lookup={'enrolled': True})s
+        lookup={'enrolled': True})

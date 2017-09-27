@@ -1,2 +1,1 @@
 from .dispense_listboard_view import DispenseListboardView
-from .result_listboard_view import ResultListboardView

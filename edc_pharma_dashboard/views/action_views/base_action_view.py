@@ -1,3 +1,8 @@
+from edc_base import Navbar
+from edc_base.view_mixins import EdcBaseViewMixin
+from edc_dashboard.view_mixins import AppConfigViewMixin
+from edc_label.label import PrintLabelError
+from edc_label.print_server import PrintServerSelectPrinterError
 import urllib
 
 from django.apps import apps as django_apps
@@ -6,11 +11,6 @@ from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
 from django.utils.text import slugify
 from django.views.generic.base import TemplateView
-from edc_base import Navbar
-from edc_base.view_mixins import EdcBaseViewMixin
-from edc_dashboard.view_mixins import AppConfigViewMixin
-from edc_label.label import PrintLabelError
-from edc_label.print_server import PrintServerSelectPrinterError
 
 from ..mixins.models_view_mixin import ModelsViewMixin
 

@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tz_detect',
     'edc_base.apps.AppConfig',
+    'edc_device.apps.AppConfig',
     'edc_protocol.apps.AppConfig',
     'edc_label.apps.AppConfig',
     'edc_model_wrapper.apps.AppConfig',
@@ -109,11 +111,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
+# https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Gaborone'
 
 USE_I18N = True
 
@@ -130,6 +132,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 KEY_PATH = os.path.join(BASE_DIR, 'crypto_fields')
+GIT_DIR = BASE_DIR
+EDC_PHARMA_DISPENSE_MODEL = 'edc_pharma.subjectrandomization'
 
 if 'test' in sys.argv:
 

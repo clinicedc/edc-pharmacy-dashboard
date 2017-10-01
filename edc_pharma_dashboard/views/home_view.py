@@ -1,9 +1,9 @@
+from edc_base.view_mixins import EdcBaseViewMixin
+from edc_dashboard.view_mixins import AppConfigViewMixin
+
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
-
-from edc_base.view_mixins import EdcBaseViewMixin
-from edc_dashboard.view_mixins import AppConfigViewMixin
 
 
 class HomeView(EdcBaseViewMixin, AppConfigViewMixin, TemplateView):

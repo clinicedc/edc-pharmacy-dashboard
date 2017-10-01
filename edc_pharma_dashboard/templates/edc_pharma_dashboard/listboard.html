@@ -51,14 +51,14 @@
           <thead>
 
             {% block results_header %}
-                {% include 'edc_pharma_dashboard/listboard/box/results_header.html' %}
+                {% include 'edc_pharma_dashboard/listboard/dispense/results_header.html' %}
             {% endblock results_header %}
 
           </thead>
           <tbody>
 
             {% block results_body %}
-                {% include 'edc_pharma_dashboard/listboard/box/results_body.html' %}
+                {% include 'edc_pharma_dashboard/listboard/dispense/results_body.html' %}
             {% endblock results_body %}
 
           </tbody>
@@ -70,6 +70,7 @@
   </div>
 
 	{% if not results %}
+	      <p>HERE HERE HERE</p>
 	    <span class="alert alert-success"><i class="fa fa-thumbs-o-up fa-fw"></i> {{ empty_queryset_message }}</span>
 	{% endif %}
   

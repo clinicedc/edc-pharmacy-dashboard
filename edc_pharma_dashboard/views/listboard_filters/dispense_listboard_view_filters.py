@@ -10,27 +10,12 @@ class DispenseListboardViewFilters(ListboardViewFilters):
         lookup={})
 
     missed = ListboardFilter(
-        name='missed',
+        name='control',
         position=10,
-        label='Missed',
+        label='control',
         lookup={'missed': True})
 
-    due_today = ListboardFilter(
-        label='due_today',
-        position=20,
-        lookup={'previous': True})
-
     previous = ListboardFilter(
-        label='previous',
-        position=30,
-        lookup={'previous': True})
-
-    control = ListboardFilter(
-        label='control',
-        position=40,
-        lookup={'Control': True})
-
-    single_dose = ListboardFilter(
-        label='Enrolled',
-        position=50,
-        lookup={'enrolled': True})
+        label='singledose',
+        position=20,
+        lookup={'singledose': True})

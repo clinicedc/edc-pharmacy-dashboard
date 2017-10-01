@@ -11,7 +11,7 @@ class DispenseView(BaseActionView):
 
     post_url_name = app_config.dispense_listboard_url_name
     valid_form_actions = ['print_labels']
-    action_name = 'dispense'
+    action_name = 'pharma'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -23,5 +23,5 @@ class DispenseView(BaseActionView):
 
     @property
     def dispenses(self):
-        return self.requisition_model.objects.filter(
+        return self.dispense_model.objects.filter(
             processed=True, pk__in=self.selected_items)

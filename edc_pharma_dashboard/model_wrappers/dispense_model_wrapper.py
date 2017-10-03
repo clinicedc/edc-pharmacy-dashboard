@@ -1,7 +1,6 @@
 from edc_model_wrapper import ModelWrapper
-from edc_pharma.classes import TimepointDescriptor
-from edc_pharma.models.dispense_schedule import DispenseSchedule
-from edc_pharma.models.dispense_timepoint import DispenseTimepoint
+from edc_pharma.models import DispenseSchedule, DispenseTimepoint
+from edc_pharma.timepoint_descriptor import TimepointDescriptor
 
 from django.apps import apps as django_apps
 

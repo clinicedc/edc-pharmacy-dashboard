@@ -5,7 +5,7 @@
       {{ wrapped.object.subject_identifier }}
       </span>
     </td>
-    <td>Control</td>
+    <td>{{wrapped.dispense_timepoint.schedule.description}}</td>
      <td>
        <button type="button" class="btn btn-default">
         <i class="fa fa-user-circle-o fa-lg"></i>
@@ -52,6 +52,9 @@
        <button type="button" class="btn btn-default">
         <i class="fa fa-print" aria-hidden="true"></i>
       </button>
+       <button type="button" class="btn btn-default">
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+      </button>
     </div> 
     </td>
     <td>
@@ -60,14 +63,14 @@
     <td>
     <dl>
         <dt>{{wrapped.dispense_timepoint_descriptor.start_day}}</dt>
-        <dd class="text text-info">{{wrapped.dispense_timepoint.timepoint | date:"Y-m-d"}}</dd>
+        <dd class="text text-info"><small>{{wrapped.dispense_timepoint.timepoint | date:"Y-m-d"}}</small></dd>
     </dl> 
     </td>
     
     <td>
     <dl>
         <dt>{{wrapped.dispense_timepoint_descriptor.end_day}}</dt>
-        <dd class="text text-info">{{wrapped.dispense_timepoint_descriptor.end_date | date:"Y-m-d"}}</dd>
+        <dd class="text text-info"><small>{{wrapped.dispense_timepoint_descriptor.end_date | date:"Y-m-d"}}</small></dd>
     </dl> 
     </td>
 

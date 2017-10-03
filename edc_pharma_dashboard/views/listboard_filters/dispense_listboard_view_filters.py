@@ -10,12 +10,13 @@ class DispenseListboardViewFilters(ListboardViewFilters):
         lookup={})
 
     missed = ListboardFilter(
-        name='control',
+        name='control_arm',
         position=10,
-        label='control',
-        lookup={'missed': True})
+        label='Control Arm',
+        lookup={'rx': True})
 
     previous = ListboardFilter(
-        label='singledose',
+        name='rx',
+        label='Single Dose',
         position=20,
         lookup={'singledose': True})

@@ -1,7 +1,10 @@
+from edc_label.print_server import PrintServerSelectPrinterError
 from edc_pharma.dispense import Dispense
 
 from django.apps import apps as django_apps
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http.response import HttpResponseRedirect
 from django.utils.decorators import method_decorator
 
 from .base_action_view import BaseActionView
@@ -22,14 +25,23 @@ class DispenseView(BaseActionView):
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 
-    def process_form_action(self):
-        if self.action == 'print_labels':
-            self.dispense_cls(
-                subject_identifier='',
-                timepoint_id='',
-            )
+    def get(self, request, *args, **kwargs):
+        self.print_labels(**kwargs)
+        return HttpResponseRedirect(self.post_url)
 
-    @property
-    def dispenses(self):
-        return self.dispense_model.objects.filter(
-            processed=True, pk__in=self.selected_items)
+    def print_labels(self, **kwargs):
+        try:
+            dispense_print = self.dispense_cls(
+                subject_identifier=kwargs.get('subject_identifier'),
+                timepoint_id=kwargs.get('timepoint'))
+        except PrintServerSelectPrinterError as e:
+            messages.error(
+                self.request,
+                str(e), extra_tags='PrintServerSelectPrinterError')
+        else:
+            for label in dispense_print.printed_labels or []:
+                description = label.get('description')
+                subject_identifier = label.get('subject_identifier')
+                messages.success(
+                    self.request,
+                    f'Printed {description} for {subject_identifier}.')

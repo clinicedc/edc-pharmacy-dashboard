@@ -27,6 +27,12 @@ class DispenseListboardView(StudySiteNameQuerysetViewMixin, BaseListboardView):
     listboard_view_filters = DispenseListboardViewFilters()
     form_action_url_name = f'edc_pharma_dashboard:dispense_url'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(
+            listboard_url_name=self.listboard_url_name)
+        return context
+
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)

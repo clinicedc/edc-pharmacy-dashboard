@@ -7,10 +7,11 @@
     </td>
     <td>{{wrapped.dispense_timepoint.schedule.description}}</td>
      <td>
-       <button type="button" class="btn btn-default">
-        <i class="fa fa-user-circle-o fa-lg"></i>
-         Dashboard
-      </button>       
+       <a class="btn btn-success btn-sm" role="button"   
+        title="Go to subject's dashboard" href="/subject/dashboard/{{wrapped.object.subject_identifier}}/">
+        <i class="fa fa-user-circle-o fa-sm"></i> 
+        Dashboard
+       </a>     
     </td>
     <td>
    <div class="btn-group">
@@ -32,7 +33,7 @@
         </ul>
       </div>
     
-       <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Appointment">
+       <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Dispense Appointment Date">
         <i class="fa fa-hospital-o" aria-hidden="true"></i>
         {{wrapped.dispense_timepoint.timepoint | date:"Y-m-d"}}
       </button>
@@ -48,13 +49,13 @@
             {% endfor %}
         </ul>
       </div>
- 
-       <button type="button" class="btn btn-default">
-        <i class="fa fa-print" aria-hidden="true"></i>
-      </button>
-       <button type="button" class="btn btn-default">
-            <i class="fa fa-calendar" aria-hidden="true"></i>
-      </button>
+
+      <a href="{% url listboard_url_name wrapped.object.subject_identifier wrapped.dispense_timepoint_id %}" class="btn btn-default" role="button">
+         <i class="fa fa-print" aria-hidden="true"></i>
+      </a>
+       <a href="#" class="btn btn-default" role="button">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+      </a>
     </div> 
     </td>
     <td>

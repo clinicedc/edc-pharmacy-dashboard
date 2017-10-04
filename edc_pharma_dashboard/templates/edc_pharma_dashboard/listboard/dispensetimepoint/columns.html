@@ -2,10 +2,10 @@
 <!-- begin columns -->
     <td>
       <span class="text text-identifier">
-      {{ wrapped.object.subject_identifier }}
+      {{ wrapped.object.schedule.subject_identifier }}
       </span>
     </td>
-    <td>{{wrapped.dispense_timepoint.schedule.description}}</td>
+    <td>{{wrapped.object.schedule.description}}</td>
      <td>
        <a class="btn btn-success btn-sm" role="button"   
         title="Go to subject's dashboard" href="/subject/dashboard/{{wrapped.object.subject_identifier}}/">
@@ -16,8 +16,12 @@
     <td>
    <div class="btn-group">
      
-      <button type="button" class="btn btn-default"><span class="text text-danger">
-        <i class="fa fa-times-circle fa-lg" title="Not dispensed"></i></span>
+      <button type="button" class="btn btn-default">
+      {% if wrapped.object.is_dispensed %}
+            <span class="text text-success"><i class="fa fa-check-circle fa-lg" title="Dispensed on {{wrapped.object.timepoint}}"></i></span>
+       {% else %}
+           <span class="text text-danger"><i class="fa fa-times-circle fa-lg" title="Not dispensed"></i></span>
+       {% endif %}
       </button>
     
       <div class="btn-group">
@@ -25,7 +29,7 @@
         <span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu">
           <li><a href="#">Previous Dispenses</a></li>
-          {% for obj in wrapped.dispense_timepoint.completed %}
+          {% for obj in wrapped.object.completed %}
                 <li><a href="#"><i class="fa fa-pencil fa-fw"></i> {{obj.timepoint}} </a></li>
            {% empty %}
                 <li><a href="#"> <strong>No previous records</strong></a></li>
@@ -35,14 +39,14 @@
     
        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Dispense Appointment Date">
         <i class="fa fa-hospital-o" aria-hidden="true"></i>
-        {{wrapped.dispense_timepoint.timepoint | date:"Y-m-d"}}
+        {{wrapped.object.timepoint | date:"Y-m-d"}}
       </button>
       
       <div class="btn-group">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
         <i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i></button>
         <ul class="dropdown-menu" role="menu">
-            {% for med in wrapped.dispense_timepoint.profile_medications %}
+            {% for med in wrapped.object.profile_medications %}
                 <li><a href="#">{{forloop.counter}}. {{med.description}}</a></li>
              {% empty %}
                 <li><a href="#"><strong>No medication list!</strong></a></li>
@@ -50,7 +54,7 @@
         </ul>
       </div>
 
-      <a href="{% url listboard_url_name wrapped.object.subject_identifier wrapped.dispense_timepoint_id %}" class="btn btn-default" role="button">
+      <a href="{% url listboard_url_name wrapped.object.schedule.subject_identifier wrapped.dispense_timepoint_id %}" class="btn btn-default" role="button">
          <i class="fa fa-print" aria-hidden="true"></i>
       </a>
        <a href="#" class="btn btn-default" role="button">
@@ -59,20 +63,20 @@
     </div>
     </td>
     <td>
-        {{wrapped.dispense_timepoint.schedule.description}}
+        {{wrapped.object.schedule.description}}
     </td>
     <td>
     <dl>
-        <dt>{{wrapped.dispense_timepoint_descriptor.start_day}}</dt>
-        <dd class="text text-info"><small>{{wrapped.dispense_timepoint.timepoint | date:"Y-m-d"}}</small></dd>
+        <dt>{{wrapped.descriptor.start_day}}</dt>
+        <dd class="text text-info"><small>{{wrapped.object.timepoint | date:"Y-m-d"}}</small></dd>
     </dl> 
     </td>
     
     <td>
     <dl>
-        <dt>{{wrapped.dispense_timepoint_descriptor.end_day}}</dt>
-        <dd class="text text-info"><small>{{wrapped.dispense_timepoint_descriptor.end_date | date:"Y-m-d"}}</small></dd>
+        <dt>{{wrapped.descriptor.end_day}}</dt>
+        <dd class="text text-info"><small>{{wrapped.descriptor.end_date | date:"Y-m-d"}}</small></dd>
     </dl> 
     </td>
 
-<!-- end columns-->
+<!-- end columns -->

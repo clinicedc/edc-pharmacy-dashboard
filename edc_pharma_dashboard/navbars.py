@@ -2,8 +2,10 @@ from edc_base import NavbarItem
 
 navbar_items = []
 config = [
-    ('edc_pharma_dashboard', 'dispense', 'Subjects', None,
+    ('edc_pharma_dashboard', 'dispense', 'Randomized Subjects', None,
      'dispense_listboard_url_name'),
+    ('edc_pharma_dashboard', 'dispensetimepoint', 'Dispenses', None,
+     'dispensetimepoint_listboard_url_name'),
     ('edc_pharma_dashboard', 'home', '', 'fa-medkit', 'home_url_name')
 ]
 for app_config_name, name, label, fa_icon, app_config_attr in config:

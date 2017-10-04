@@ -17,14 +17,13 @@ class DispenseModelWrapper(ModelWrapper):
 
     @property
     def dispense_timepoint(self):
-        if self.dispense_schedule:
-            try:
-                return DispenseTimepoint.objects.filter(
-                    schedule__subject_identifier=self.subject_identifier,
-                    is_dispensed=False
-                ).order_by('created').first()
-            except DispenseTimepoint.DoesNotExist:
-                pass
+        try:
+            return DispenseTimepoint.objects.filter(
+                schedule__subject_identifier=self.subject_identifier,
+                is_dispensed=False
+            ).order_by('created').first()
+        except DispenseTimepoint.DoesNotExist:
+            pass
 
     @property
     def dispense_timepoint_id(self):

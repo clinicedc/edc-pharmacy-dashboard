@@ -26,12 +26,14 @@ class DispenseView(BaseActionView):
         return super().dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        self.print_labels(**kwargs)
+        self.print_labels(request, **kwargs)
         return HttpResponseRedirect(self.post_url)
 
-    def print_labels(self, **kwargs):
+    def print_labels(self, request, **kwargs):
         try:
+            print(request.user.__dict__, "request.user request.user request.user")
             dispense_print = self.dispense_cls(
+                user=request.user,
                 subject_identifier=kwargs.get('subject_identifier'),
                 timepoint_id=kwargs.get('timepoint'))
         except PrintServerSelectPrinterError as e:

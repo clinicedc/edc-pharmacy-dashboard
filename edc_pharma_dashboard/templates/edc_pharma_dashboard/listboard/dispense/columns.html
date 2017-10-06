@@ -5,7 +5,7 @@
       {{ wrapped.object.subject_identifier }}
       </span>
     </td>
-    <td>{{wrapped.dispense_timepoint.schedule.description}}</td>
+    <td>{{wrapped.object.rx}}</td>
      <td>
        <a class="btn btn-success btn-sm" role="button"   
         title="Go to subject's dashboard" href="/subject/dashboard/{{wrapped.object.subject_identifier}}/">
@@ -16,11 +16,15 @@
     <td>
    <div class="btn-group">
      
-      <button type="button" class="btn btn-default"><span class="text text-danger">
-        <i class="fa fa-times-circle fa-lg" title="Not dispensed"></i></span>
+      <button type="button" class="btn btn-default" title="Dispense Status"><span class="text text-danger">
+       {% if wrapped.dispense_timepoint.is_dispensed %}
+            <span class="text text-success"><i class="fa fa-check-circle fa-lg" title="Dispensed on {{wrapped.object.timepoint}}"></i></span>
+       {% else %}
+           <span class="text text-danger"><i class="fa fa-times-circle fa-lg" title="Not dispensed">{{wrapped.object.dispense_timepoint}}</i></span>
+       {% endif %}
       </button>
     
-      <div class="btn-group">
+      <div class="btn-group" title="View previous dispenses.">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
         <span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu">
@@ -38,7 +42,7 @@
         {{wrapped.dispense_timepoint.timepoint | date:"Y-m-d"}}
       </button>
       
-      <div class="btn-group">
+      <div class="btn-group" title="View Medication list to dispense">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
         <i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i></button>
         <ul class="dropdown-menu" role="menu">
@@ -50,10 +54,13 @@
         </ul>
       </div>
 
-      <a href="{% url listboard_url_name wrapped.object.subject_identifier wrapped.dispense_timepoint_id %}" class="btn btn-default" role="button">
+      <a href="{% url listboard_url_name wrapped.object.subject_identifier wrapped.dispense_timepoint_id %}" class="btn btn-default" role="button"
+      title="Print medication labels.">
          <i class="fa fa-print" aria-hidden="true"></i>
       </a>
-       <a href="#" class="btn btn-default" role="button">
+       <a 
+       href="{% url dispensetimepoint_listboard_url_name wrapped.object.subject_identifier %}"
+       class="btn btn-default" role="button" title="View all dispenses appointments.">
           <i class="fa fa-calendar" aria-hidden="true"></i>
       </a>
     </div>

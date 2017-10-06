@@ -19,7 +19,8 @@ class DispenseTimepointListboardView(StudySiteNameQuerysetViewMixin, BaseListboa
 
     model = edc_pharma_app_config.dispensetimepoint_model
     model_wrapper_cls = DispenseTimepointModelWrapper
-    listboard_url_name = app_config.dispense_listboard_url_name
+    listboard_url_name = app_config.dispensetimepoint_listboard_url_name
+    dispense_listbord_url_name = app_config.dispense_listboard_url_name
     listboard_template_name = app_config.dispensetimepoint_listboard_template_name
     show_all = True
     listboard_view_filters = DispenseTimepointListboardViewFilters()
@@ -27,7 +28,8 @@ class DispenseTimepointListboardView(StudySiteNameQuerysetViewMixin, BaseListboa
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(
-            listboard_url_name=self.listboard_url_name)
+            listboard_url_name=self.listboard_url_name,
+            dispense_listbord_url_name=self.dispense_listbord_url_name)
         return context
 
     @method_decorator(login_required)
@@ -36,5 +38,7 @@ class DispenseTimepointListboardView(StudySiteNameQuerysetViewMixin, BaseListboa
 
     def get_queryset_filter_options(self, request, *args, **kwargs):
         options = super().get_queryset_filter_options(request, *args, **kwargs)
-#         options.update(is_drawn=YES)
+        if kwargs.get('subject_identifier'):
+            options.update(schedule__subject_identifier=kwargs.get(
+                'subject_identifier'))
         return options

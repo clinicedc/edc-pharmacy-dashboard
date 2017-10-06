@@ -23,13 +23,18 @@ urlpatterns = [
     #         pattern_name='login_url'), name='logout_url'),
     url(r'^listboard/dispense/$', DispenseListboardView.as_view(),
         name='dispense_listboard_url'),
-    url(r'^listboard/dispensetimepoint/$', DispenseTimepointListboardView.as_view(),
-        name='dispensetimepoint_listboard_url'),
     url(r'^listboard/dispense/'
         '(?P<subject_identifier>' + subject_identifier + ')/'
         '(?P<timepoint>' + UUID_PATTERN.pattern + ')/',
         DispenseView.as_view(),
         name='dispense_listboard_url'),
+
+    url(r'^listboard/dispensetimepoint/$', DispenseTimepointListboardView.as_view(),
+        name='dispensetimepoint_listboard_url'),
+    url(r'^listboard/dispensetimepoint/'
+        '(?P<subject_identifier>' + subject_identifier + ')/',
+        DispenseTimepointListboardView.as_view(),
+        name='dispensetimepoint_listboard_url'),
 
     url(r'^timeline/$', SubjectDispenseListboardView.as_view(),
         name='subject_dispense_listboard_url'),

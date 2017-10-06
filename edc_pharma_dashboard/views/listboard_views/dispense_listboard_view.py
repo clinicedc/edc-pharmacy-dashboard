@@ -1,5 +1,3 @@
-from edc_constants.constants import YES
-
 from django.apps import apps as django_apps
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -23,6 +21,7 @@ class DispenseListboardView(StudySiteNameQuerysetViewMixin, BaseListboardView):
     model_wrapper_cls = DispenseModelWrapper
     listboard_url_name = app_config.dispense_listboard_url_name
     listboard_template_name = app_config.dispense_listboard_template_name
+    dispensetimepoint_listboard_url_name = app_config.dispensetimepoint_listboard_url_name
     show_all = True
     listboard_view_filters = DispenseListboardViewFilters()
     form_action_url_name = f'edc_pharma_dashboard:dispense_url'
@@ -30,7 +29,8 @@ class DispenseListboardView(StudySiteNameQuerysetViewMixin, BaseListboardView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(
-            listboard_url_name=self.listboard_url_name)
+            listboard_url_name=self.listboard_url_name,
+            dispensetimepoint_listboard_url_name=self.dispensetimepoint_listboard_url_name)
         return context
 
     @method_decorator(login_required)
@@ -39,5 +39,4 @@ class DispenseListboardView(StudySiteNameQuerysetViewMixin, BaseListboardView):
 
     def get_queryset_filter_options(self, request, *args, **kwargs):
         options = super().get_queryset_filter_options(request, *args, **kwargs)
-#         options.update(is_drawn=YES)
         return options

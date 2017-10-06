@@ -4,7 +4,6 @@ from edc_pharma.timepoint_descriptor import TimepointDescriptor
 
 from django.apps import apps as django_apps
 
-
 app_config = django_apps.get_app_config('edc_pharma_dashboard')
 edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 
@@ -17,13 +16,16 @@ class DispenseModelWrapper(ModelWrapper):
 
     @property
     def dispense_timepoint(self):
-        try:
-            return DispenseTimepoint.objects.filter(
-                schedule__subject_identifier=self.subject_identifier,
-                is_dispensed=False
-            ).order_by('created').first()
-        except DispenseTimepoint.DoesNotExist:
-            pass
+        dispense_timepoint = DispenseTimepoint.objects.filter(
+            schedule__subject_identifier=self.object.subject_identifier,
+            is_dispensed=False
+        ).order_by('created').first()
+        if not dispense_timepoint:
+            dispense_timepoint = DispenseTimepoint.objects.filter(
+                schedule__subject_identifier=self.object.subject_identifier,
+                is_dispensed=True
+            ).order_by('created').last()
+        return dispense_timepoint
 
     @property
     def dispense_timepoint_id(self):

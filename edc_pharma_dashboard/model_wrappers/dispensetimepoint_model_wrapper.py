@@ -3,7 +3,6 @@ from edc_pharma.timepoint_descriptor import TimepointDescriptor
 
 from django.apps import apps as django_apps
 
-
 app_config = django_apps.get_app_config('edc_pharma_dashboard')
 edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 
@@ -21,3 +20,9 @@ class DispenseTimepointModelWrapper(ModelWrapper):
     @property
     def dispense_timepoint_id(self):
         return str(self.object.id)
+
+    @property
+    def can_dispense_labels(self):
+        if self.object.previous():
+            return self.object.previous().is_dispensed
+        return True

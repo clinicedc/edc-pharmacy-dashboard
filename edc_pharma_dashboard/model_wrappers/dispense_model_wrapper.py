@@ -1,8 +1,9 @@
 from edc_model_wrapper import ModelWrapper
+from edc_pharma import DispenseAppointmentDescibe
 from edc_pharma.models import DispenseAppointment
-from edc_pharma.timepoint_descriptor import TimepointDescriptor
 
 from django.apps import apps as django_apps
+
 
 app_config = django_apps.get_app_config('edc_pharma_dashboard')
 edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
@@ -32,7 +33,7 @@ class DispenseModelWrapper(ModelWrapper):
         return str(self.dispense_appointment.id)
 
     @property
-    def dispense_appointment_descriptor(self):
-        descriptor = TimepointDescriptor(
+    def dispense_appt_describe(self):
+        appt_describe = DispenseAppointmentDescibe(
             dispense_appointment=self.dispense_appointment)
-        return descriptor
+        return appt_describe

@@ -5,7 +5,7 @@
       {{ wrapped.object.schedule.subject_identifier }}
       </span>
     </td>
-    <td>{{wrapped.object.rx}}</td>
+    <td>{{wrapped.object.schedule.arm}}</td>
      <td>
        <a class="btn btn-success btn-sm" role="button"   
         title="Go to subject's dashboard" href="/subject/dashboard/{{wrapped.object.schedule.subject_identifier}}/">
@@ -74,15 +74,15 @@
     </td>
     <td>
     <dl>
-        <dt>{{wrapped.descriptor.start_day}}</dt>
+        <dt>{{wrapped.dispense_appt_describe.start_day}}</dt>
         <dd class="text text-info"><small>{{wrapped.object.timepoint | date:"Y-m-d"}}</small></dd>
     </dl> 
     </td>
     
     <td>
     <dl>
-        <dt>{{wrapped.descriptor.end_day}}</dt>
-        <dd class="text text-info"><small>{{wrapped.descriptor.end_date | date:"Y-m-d"}}</small></dd>
+        <dt>{{wrapped.dispense_appt_describe.end_day}}</dt>
+        <dd class="text text-info"><small>{{wrapped.dispense_appt_describe.end_date | date:"Y-m-d"}}</small></dd>
     </dl> 
     </td>
 

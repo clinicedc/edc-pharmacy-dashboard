@@ -42,7 +42,7 @@ class DispenseView(BaseActionView):
                 str(e), extra_tags='PrintServerSelectPrinterError')
         else:
             for label in dispense_print.printed_labels or []:
-                description = label.get('description')
+                description = label.get('medication')
                 subject_identifier = label.get('subject_identifier')
                 messages.success(
                     self.request,

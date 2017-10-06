@@ -1,5 +1,5 @@
 from edc_model_wrapper import ModelWrapper
-from edc_pharma.models import DispenseTimepoint
+from edc_pharma.models import DispenseAppointment
 from edc_pharma.timepoint_descriptor import TimepointDescriptor
 
 from django.apps import apps as django_apps
@@ -15,24 +15,24 @@ class DispenseModelWrapper(ModelWrapper):
     querystring_attrs = ['subject_identifier', 'sid']
 
     @property
-    def dispense_timepoint(self):
-        dispense_timepoint = DispenseTimepoint.objects.filter(
+    def dispense_appointment(self):
+        dispense_timepoint = DispenseAppointment.objects.filter(
             schedule__subject_identifier=self.object.subject_identifier,
             is_dispensed=False
         ).order_by('created').first()
         if not dispense_timepoint:
-            dispense_timepoint = DispenseTimepoint.objects.filter(
+            dispense_timepoint = DispenseAppointment.objects.filter(
                 schedule__subject_identifier=self.object.subject_identifier,
                 is_dispensed=True
             ).order_by('created').last()
         return dispense_timepoint
 
     @property
-    def dispense_timepoint_id(self):
-        return str(self.dispense_timepoint.id)
+    def dispense_appointment_id(self):
+        return str(self.dispense_appointment.id)
 
     @property
-    def dispense_timepoint_descriptor(self):
+    def dispense_appointment_descriptor(self):
         descriptor = TimepointDescriptor(
-            dispense_timepoint=self.dispense_timepoint)
+            dispense_appointment=self.dispense_appointment)
         return descriptor

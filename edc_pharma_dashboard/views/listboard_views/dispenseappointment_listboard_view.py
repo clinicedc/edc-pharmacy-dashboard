@@ -2,7 +2,7 @@ from django.apps import apps as django_apps
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from edc_pharma_dashboard.model_wrappers.dispensetimepoint_model_wrapper import DispenseTimepointModelWrapper
+from edc_pharma_dashboard.model_wrappers import DispenseAppointmentModelWrapper
 from edc_pharma_dashboard.views.listboard_filters import DispenseTimepointListboardViewFilters
 
 from ..mixins import StudySiteNameQuerysetViewMixin
@@ -13,12 +13,12 @@ app_config = django_apps.get_app_config('edc_pharma_dashboard')
 edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 
 
-class DispenseTimepointListboardView(StudySiteNameQuerysetViewMixin, BaseListboardView):
+class DispenseAppointmentListboardView(StudySiteNameQuerysetViewMixin, BaseListboardView):
 
     navbar_item_selected = 'dispensetimepoint'
 
     model = edc_pharma_app_config.dispensetimepoint_model
-    model_wrapper_cls = DispenseTimepointModelWrapper
+    model_wrapper_cls = DispenseAppointmentModelWrapper
     listboard_url_name = app_config.dispensetimepoint_listboard_url_name
     dispense_listbord_url_name = app_config.dispense_listboard_url_name
     listboard_template_name = app_config.dispensetimepoint_listboard_template_name

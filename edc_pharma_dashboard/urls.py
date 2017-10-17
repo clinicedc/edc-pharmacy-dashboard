@@ -8,7 +8,7 @@ from edc_pharma_dashboard.views import DispensingView
 from edc_pharma_dashboard.views import HomeView
 from edc_pharma_dashboard.views.action_views import DispenseActionView
 from edc_pharma_dashboard.views.listboard_views import DispenseAppointmentListboardView
-from edc_pharma_dashboard.views.listboard_views import DispenseListboardView
+from edc_pharma_dashboard.views.listboard_views import PrescriptionListboardView
 
 from .patterns import subject_identifier
 
@@ -21,7 +21,7 @@ urlpatterns = [
     #     url(r'login', LoginView.as_view(), name='login_url'),
     #     url(r'logout', LogoutView.as_view(
     #         pattern_name='login_url'), name='logout_url'),
-    url(r'^listboard/dispense/$', DispenseListboardView.as_view(),
+    url(r'^listboard/dispense/$', PrescriptionListboardView.as_view(),
         name='dispense_listboard_url'),
     url(r'^listboard/dispensing/'
         '(?P<subject_identifier>' + subject_identifier + ')/'

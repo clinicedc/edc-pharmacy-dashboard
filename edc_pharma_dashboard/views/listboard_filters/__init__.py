@@ -1,2 +1,3 @@
-from .dispense_listboard_view_filters import DispenseListboardViewFilters
-from .dispensetimepoint_listboard_view_filters import DispenseTimepointListboardViewFilters
+from .dispense_listboard_view_filters import PrescriptionListboardViewFilters
+from .dispensetimepoint_listboard_view_filters import (
+    DispenseAppointmentListboardViewFilters)

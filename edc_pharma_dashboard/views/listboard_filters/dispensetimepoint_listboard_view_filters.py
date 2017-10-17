@@ -1,7 +1,7 @@
 from edc_dashboard.listboard_filter import ListboardFilter, ListboardViewFilters
 
 
-class DispenseTimepointListboardViewFilters(ListboardViewFilters):
+class DispenseAppointmentListboardViewFilters(ListboardViewFilters):
 
     all = ListboardFilter(
         name='all',

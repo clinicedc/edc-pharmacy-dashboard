@@ -12,10 +12,9 @@ class AppConfig(DjangoAppConfig):
     listboard_url_name = f'{dashboard_name}:dispense_listboard_url'
     dashboard_url_name = 'home_url'
 
-    dispense_listboard_template_name = 'edc_pharma_dashboard/dispense_listboard.html'
-    dispensetimepoint_listboard_template_name = 'edc_pharma_dashboard/dispensetimepoint_listboard.html'
-
+    prescription_listboard_template_name = 'edc_pharma_dashboard/prescription_listboard.html'
+    dispense_appointment_listboard_template_name = 'edc_pharma_dashboard/dispenseappointment_listboard.html'
     home_url_name = f'{dashboard_name}:home_url'
-    dispense_listboard_url_name = f'{dashboard_name}:dispense_listboard_url'
-    dispensetimepoint_listboard_url_name = f'{dashboard_name}:dispensetimepoint_listboard_url'
+    prescription_listboard_url_name = f'{dashboard_name}:prescription_listboard_url'
+    dispense_appointment_listboard_url_name = f'{dashboard_name}:dispenseappointment_listboard_url'
     dispensing_form_url_name = f'{dashboard_name}:dispensing_form_url'

@@ -1,1 +1,1 @@
-from .dispense_view import DispenseView
+from .dispense_action_view import DispenseActionView, DispensePrintLabelMixin

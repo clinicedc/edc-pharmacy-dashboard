@@ -18,7 +18,7 @@
      
       <button type="button" class="btn btn-default" title="Dispense Status"><span class="text text-danger">
        {% if wrapped.dispense_appointment.is_dispensed %}
-            <span class="text text-success"><i class="fa fa-check-circle fa-lg" title="Dispensed on {{wrapped.object.timepoint}}"></i></span>
+            <span class="text text-success"><i class="fa fa-check-circle fa-lg" title="Dispensed on {{wrapped.object.appt_datetime}}"></i></span>
        {% else %}
            <span class="text text-danger"><i class="fa fa-times-circle fa-lg" title="Not dispensed">{{wrapped.object.dispense_appointment}}</i></span>
        {% endif %}
@@ -30,7 +30,7 @@
         <ul class="dropdown-menu" role="menu">
           <li><a href="#">Previous Dispenses</a></li>
           {% for obj in wrapped.dispense_appointment.completed %}
-                <li><a href="#"><i class="fa fa-pencil fa-fw"></i> {{obj.timepoint}} </a></li>
+                <li><a href="#"><i class="fa fa-pencil fa-fw"></i> {{obj.appt_datetime}} </a></li>
            {% empty %}
                 <li><a href="#"> <strong>No previous records</strong></a></li>
            {% endfor %}
@@ -39,7 +39,7 @@
     
        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Dispense Appointment Date">
         <i class="fa fa-hospital-o" aria-hidden="true"></i>
-        {{wrapped.dispense_appointment.timepoint | date:"Y-m-d"}}
+        {{wrapped.dispense_appointment.appt_datetime | date:"Y-m-d"}}
       </button>
       
       <div class="btn-group" title="View Medication list to dispense">
@@ -53,11 +53,6 @@
             {% endfor %}
         </ul>
       </div>
-
-      <a href="{% url listboard_url_name wrapped.object.subject_identifier wrapped.dispense_appointment_id %}" class="btn btn-default" role="button"
-      title="Print medication labels.">
-         <i class="fa fa-print" aria-hidden="true"></i>
-      </a>
        <a 
        href="{% url dispensetimepoint_listboard_url_name wrapped.object.subject_identifier %}"
        class="btn btn-default" role="button" title="View all dispenses appointments.">
@@ -71,7 +66,7 @@
     <td>
     <dl>
         <dt>{{wrapped.dispense_appt_describe.start_day}}</dt>
-        <dd class="text text-info"><small>{{wrapped.dispense_appointment.timepoint | date:"Y-m-d"}}</small></dd>
+        <dd class="text text-info"><small>{{wrapped.dispense_appointment.appt_datetime | date:"Y-m-d"}}</small></dd>
     </dl> 
     </td>
     

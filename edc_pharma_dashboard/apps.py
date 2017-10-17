@@ -18,3 +18,4 @@ class AppConfig(DjangoAppConfig):
     home_url_name = f'{dashboard_name}:home_url'
     dispense_listboard_url_name = f'{dashboard_name}:dispense_listboard_url'
     dispensetimepoint_listboard_url_name = f'{dashboard_name}:dispensetimepoint_listboard_url'
+    dispensing_form_url_name = f'{dashboard_name}:dispensing_form_url'

@@ -29,7 +29,8 @@ class DispenseAppointmentListboardView(StudySiteNameQuerysetViewMixin, BaseListb
         context = super().get_context_data(**kwargs)
         context.update(
             listboard_url_name=self.listboard_url_name,
-            dispense_listbord_url_name=self.dispense_listbord_url_name)
+            dispense_listbord_url_name=self.dispense_listbord_url_name,
+            dispensing_form_url_name=app_config.dispensing_form_url_name)
         return context
 
     @method_decorator(login_required)

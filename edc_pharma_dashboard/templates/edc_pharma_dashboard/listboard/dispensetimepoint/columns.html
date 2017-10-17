@@ -18,40 +18,21 @@
      
       <button type="button" class="btn btn-default" title="Dispense Status">
       {% if wrapped.object.is_dispensed %}
-            <span class="text text-success"><i class="fa fa-check-circle fa-lg" title="Dispensed on {{wrapped.object.timepoint}}"></i></span>
+            <span class="text text-success"><i class="fa fa-check-circle fa-lg" title="Dispensed on {{wrapped.object.appt_datetime}}"></i></span>
        {% else %}
            <span class="text text-danger"><i class="fa fa-times-circle fa-lg" title="Not dispensed"></i></span>
        {% endif %}
       </button>
     
-      <div class="btn-group" title="View previous dispenses.">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="#">Previous Dispenses</a></li>
-          {% for obj in wrapped.object.completed %}
-                <li><a href="#"><i class="fa fa-pencil fa-fw"></i> {{obj.timepoint}} </a></li>
-           {% empty %}
-                <li><a href="#"> <strong>No previous records</strong></a></li>
-           {% endfor %}
-        </ul>
-      </div>
-    
        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Dispense Appointment Date">
         <i class="fa fa-hospital-o" aria-hidden="true"></i>
-        {{wrapped.object.timepoint | date:"Y-m-d"}}
+        {{wrapped.object.appt_datetime | date:"Y-m-d"}}
       </button>
       
       <div class="btn-group" title="View Medication list to dispense">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#dispenseMedicationModal-{{ page_obj.start_index|add:forloop.counter0 }}">
         <i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i></button>
-        <ul class="dropdown-menu" role="menu">
-            {% for med in wrapped.object.profile_medications %}
-                <li><a href="#">{{forloop.counter}}. {{med.description}}</a></li>
-             {% empty %}
-                <li><a href="#"><strong>No medication list!</strong></a></li>
-            {% endfor %}
-        </ul>
+        {% include 'edc_pharma_dashboard/listboard/dispensetimepoint/dispensensing_modal.html' %}
       </div>
 
       <a 
@@ -64,9 +45,6 @@
       title="Print medication labels.">
          <i class="fa fa-print" aria-hidden="true"></i>
       </a>
-       <a href="{% url listboard_url_name wrapped.object.schedule.subject_identifier %}" class="btn btn-default" role="button">
-          <i class="fa fa-calendar" aria-hidden="true"></i>
-      </a>
     </div>
     </td>
     <td>
@@ -75,7 +53,7 @@
     <td>
     <dl>
         <dt>{{wrapped.dispense_appt_describe.start_day}}</dt>
-        <dd class="text text-info"><small>{{wrapped.object.timepoint | date:"Y-m-d"}}</small></dd>
+        <dd class="text text-info"><small>{{wrapped.object.appt_datetime | date:"Y-m-d"}}</small></dd>
     </dl> 
     </td>
     

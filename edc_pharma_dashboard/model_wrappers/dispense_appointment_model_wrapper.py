@@ -1,5 +1,5 @@
 from edc_model_wrapper import ModelWrapper
-from edc_pharma import DispenseAppointmentDescibe
+from edc_pharma import DispenseAppointmentDescribe
 from edc_pharma.medications import MedicationDosage
 from edc_pharma.medications import medications
 
@@ -18,7 +18,7 @@ class DispenseAppointmentModelWrapper(ModelWrapper):
 
     @property
     def dispense_appt_describe(self):
-        return DispenseAppointmentDescibe(dispense_appointment=self.object)
+        return DispenseAppointmentDescribe(dispense_appointment=self.object)
 
     @property
     def patient_history(self):

@@ -1,1 +1,2 @@
+from .approve_prescription import ApprovePrescriptionView
 from .dispense_action_view import DispenseActionView, DispensePrintLabelMixin

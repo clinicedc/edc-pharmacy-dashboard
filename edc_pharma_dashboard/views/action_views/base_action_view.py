@@ -53,7 +53,7 @@ class BaseActionView(ModelsViewMixin, EdcBaseViewMixin,
 
     @property
     def url_kwargs(self):
-        """Returns the default dictionary to reverse the post url.
+        """Returns the default dictionary to reverse the post url. taixoo4M
         """
         return {}
 

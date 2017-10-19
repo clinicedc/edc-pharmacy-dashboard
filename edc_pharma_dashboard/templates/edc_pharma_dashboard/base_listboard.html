@@ -5,7 +5,7 @@
 
 
 {% block extra-css %}
-    <link rel="stylesheet" type="text/css" href="{% static "edc_dispense_dashboard/css/extra.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "edc_pharma_dashboard/css/extra.css" %}">
 {{ block.super }}
 {% endblock extra-css %}
 
@@ -20,7 +20,6 @@
 
         <div class="panel-group">
 
-
           <div class="panel panel-success">
             <div class="panel-heading clearfix">
 
@@ -31,16 +30,11 @@
 
                    <div class="col-sm-4">   
                     {% block search_form %}
-                        {% include 'edc_pharma/search_form.html' %}
+                        {% include 'edc_dashboard/search_form.html' %}
                     {% endblock search_form %}
                    </div>
-
-
-
             </div>
           </div>
-
-
           <div class="panel-body">
 
             {% block results_table %}

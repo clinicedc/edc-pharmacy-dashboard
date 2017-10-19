@@ -1,11 +1,10 @@
-{% extends "edc_lab_dashboard/listboard.html" %}
+{% extends "edc_pharma_dashboard/listboard.html" %}
 
-{% block dispense_action_buttons %}
-    <button class="btn btn-sm btn-default" type="submit" id="action" name="action" form="{{ form_action_name }}" value="print_labels">
-        <i class="fa fa-barcode fa-sm"></i> Print labels
+{% block panel_action_buttons %}
+    <button class="btn btn-sm btn-default" type="submit" id="action" name="action" form="{{ form_action_name }}" value="approve_selected_prescription">
+        Approve Selected Prescriptions
     </button>
-{% endblock dispense_action_buttons %}
-
+{% endblock panel_action_buttons %}
 
 {% block results_header %}
     {% include 'edc_pharma_dashboard/listboard/prescription/results_header.html' %}

@@ -1,6 +1,5 @@
 from edc_model_wrapper import ModelWrapper
-# from edc_pharma import DispenseAppointmentDescibe
-# from edc_pharma.models import DispenseAppointment
+from edc_pharma.dispense_appointment_describe import DispenseAppointmentDescibe
 
 from django.apps import apps as django_apps
 
@@ -15,29 +14,14 @@ class PrescriptionModelWrapper(ModelWrapper):
     next_url_name = app_config.prescription_listboard_url_name
     querystring_attrs = ['subject_identifier', 'sid']
 
-#     @property
-#     def dispense_appointment(self):
-#         dispense_timepoint = DispenseAppointment.objects.filter(
-#             schedule__subject_identifier=self.object.dispense_appointment.subject_identifier,
-#             is_dispensed=False
-#         ).order_by('created').first()
-#         if not dispense_timepoint:
-#             dispense_timepoint = DispenseAppointment.objects.filter(
-#                 schedule__subject_identifier=self.object.subject_visit.subject_identifier,
-#                 is_dispensed=True
-#             ).order_by('created').last()
-#         return dispense_timepoint
-#
-#     @property
-#     def dispense_appointment_id(self):
-#         return str(self.dispense_appointment.id)
-#
-#     @property
-#     def prescriptions(self):
-#         pass
-#
-#     @property
-#     def dispense_appt_describe(self):
-#         appt_describe = DispenseAppointmentDescibe(
-#             dispense_appointment=self.dispense_appointment)
-#         return appt_describe
+    @property
+    def dispense_appt_describe(self):
+        appt_describe = DispenseAppointmentDescibe(
+            dispense_appointment=self.object.dispense_appointment)
+        return appt_describe
+
+    @property
+    def is_pending(self):
+        return (
+            self.dispense_appt_describe.is_next_pending_appointment()
+            and not self.object.is_approved)

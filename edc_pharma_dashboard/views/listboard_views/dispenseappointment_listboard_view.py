@@ -6,7 +6,6 @@ from edc_pharma_dashboard.model_wrappers import DispenseAppointmentModelWrapper
 from edc_pharma_dashboard.views.listboard_filters import (
     DispenseAppointmentListboardViewFilters)
 
-from ..mixins import StudySiteNameQuerysetViewMixin
 from .base_listboard import BaseListboardView
 
 
@@ -14,7 +13,7 @@ app_config = django_apps.get_app_config('edc_pharma_dashboard')
 edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 
 
-class DispenseAppointmentListboardView(StudySiteNameQuerysetViewMixin, BaseListboardView):
+class DispenseAppointmentListboardView(BaseListboardView):
 
     navbar_item_selected = 'dispenseappointment'
 
@@ -30,7 +29,7 @@ class DispenseAppointmentListboardView(StudySiteNameQuerysetViewMixin, BaseListb
         context = super().get_context_data(**kwargs)
         context.update(
             listboard_url_name=self.listboard_url_name,
-            dispense_listbord_url_name=self.dispense_listbord_url_name,
+            dispense_listbord_url_name=self.prescription_listbord_url_name,
             dispensing_form_url_name=app_config.dispensing_form_url_name)
         return context
 

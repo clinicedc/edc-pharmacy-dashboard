@@ -9,14 +9,14 @@ class PrescriptionListboardViewFilters(ListboardViewFilters):
         label='All',
         lookup={})
 
-#     missed = ListboardFilter(
-#         name='control_arm',
-#         position=10,
-#         label='Control Arm',
-#         lookup={'rx': True})
-#
-#     previous = ListboardFilter(
-#         name='rx',
-#         label='Single Dose',
-#         position=20,
-#         lookup={'singledose': True})
+    missed = ListboardFilter(
+        name='control_arm',
+        position=10,
+        label='Control Arm',
+        lookup={'rx': True})
+
+    previous = ListboardFilter(
+        name='rx',
+        label='Single Dose',
+        position=20,
+        lookup={'singledose': True})

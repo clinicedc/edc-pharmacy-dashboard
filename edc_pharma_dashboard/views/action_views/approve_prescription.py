@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from django.apps import apps as django_apps
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required

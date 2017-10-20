@@ -35,15 +35,17 @@ class DispenseViewMixin(DispensePrintLabelMixin):
         for key in self.request.POST:
             if key.startswith('med'):
                 value = self.request.POST.get(key)
+                print(
+                    value, "{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}")
         if printed_labels:
             msg = 'Successfully printed {}.'.format(
                 ', '.join(printed_labels))
             messages.add_message(request, messages.SUCCESS, msg)
         else:
-            msg = f'Nothing printed for {subject_identifier}.'
+            msg = f'Nothing selected for {subject_identifier}.'
             messages.add_message(request, messages.ERROR, msg)
         url = reverse(
-            app_config.dispense_appointment_listboard_url_name,
+            app_config.appointment_listboard_url_name,
             kwargs={'subject_identifier': subject_identifier})
         return HttpResponseRedirect(url)
 

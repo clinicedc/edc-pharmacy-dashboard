@@ -28,11 +28,6 @@ class DispenseViewMixin(DispensePrintLabelMixin):
 
     def get_success_url(self):
         return '/'
-#     reverse(self.dashboard_url_name,
-#                        kwargs={
-#                            'household_identifier': self.household_identifier,
-#                            'survey_schedule': self.survey_schedule
-#                        })
 
     def post(self, request, *args, **kwargs):
         subject_identifier = kwargs.get('subject_identifier')
@@ -44,11 +39,12 @@ class DispenseViewMixin(DispensePrintLabelMixin):
             msg = 'Successfully printed {}.'.format(
                 ', '.join(printed_labels))
             messages.add_message(request, messages.SUCCESS, msg)
+        else:
+            msg = f'Nothing printed for {subject_identifier}.'
+            messages.add_message(request, messages.ERROR, msg)
         url = reverse(
-            app_config.dispensetimepoint_listboard_url_name,
-            kwargs={
-                'subject_identifier': subject_identifier,
-            })
+            app_config.dispense_appointment_listboard_url_name,
+            kwargs={'subject_identifier': subject_identifier})
         return HttpResponseRedirect(url)
 
 

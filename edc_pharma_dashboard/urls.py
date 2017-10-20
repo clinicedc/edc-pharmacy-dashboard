@@ -8,6 +8,7 @@ from edc_pharma_dashboard.views import DispensingView
 from edc_pharma_dashboard.views import HomeView
 from edc_pharma_dashboard.views.action_views import ApprovePrescriptionView
 from edc_pharma_dashboard.views.action_views import DispenseActionView
+from edc_pharma_dashboard.views.action_views.dispensing_action_view import DispensingActionView
 from edc_pharma_dashboard.views.listboard_views import DispenseAppointmentListboardView
 from edc_pharma_dashboard.views.listboard_views import PrescriptionListboardView
 
@@ -31,6 +32,8 @@ urlpatterns = [
         name='prescription_listboard_url'),
     url(r'^prescription/approve/$', ApprovePrescriptionView.as_view(),
         name='approve_prescription_url'),
+    url(r'^listboard/dispensing/$', DispensingActionView.as_view(),
+        name='dispensing_action_url'),
     url(r'^listboard/dispensing/$', DispenseAppointmentListboardView.as_view(),
         name='dispense_appointment_listboard_url'),
     url(r'^listboard/dispensing/'

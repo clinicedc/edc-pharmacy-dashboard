@@ -1,7 +1,6 @@
 from edc_model_wrapper import ModelWrapper
 from edc_pharma import DispenseAppointmentDescribe
-from edc_pharma.medications import MedicationDosage
-from edc_pharma.medications import medications
+from edc_pharma.models.prescription import Prescription
 
 from django.apps import apps as django_apps
 
@@ -13,7 +12,7 @@ edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 class DispenseAppointmentModelWrapper(ModelWrapper):
 
     model = 'edc_pharma.dispenseappointment'
-    next_url_name = app_config.prescription_listboard_url_name
+    next_url_name = app_config.dispense_appointment_listboard_url_name
     querystring_attrs = ['subject_identifier']
 
     @property
@@ -21,24 +20,15 @@ class DispenseAppointmentModelWrapper(ModelWrapper):
         return DispenseAppointmentDescribe(dispense_appointment=self.object)
 
     @property
-    def patient_history(self):
-        pass
+    def subject_identifier(self):
+        return self.object.subject_identifier
 
     @property
-    def medications(self):
-        _medications = []
-        body_weight = 32.0
-        duration = self.dispense_appt_describe.duration
-        for med in self.object.profile_medications:
-            medication_definition = medications.get(med.name)
-            medication = MedicationDosage(
-                medication_definition=medication_definition, weight=body_weight,
-                duration=duration)
-            _medications.append(medication)
-        return _medications
+    def prescriptions(self):
+        return Prescription.objects.filter(dispense_appointment=self.object)
 
     @property
-    def dispense_timepoint_id(self):
+    def dispense_appointment_id(self):
         return str(self.object.id)
 
     @property

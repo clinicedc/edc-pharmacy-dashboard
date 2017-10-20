@@ -1,4 +1,3 @@
-from edc_base import Navbar
 from edc_base.view_mixins import EdcBaseViewMixin
 from edc_dashboard.view_mixins import AppConfigViewMixin
 from edc_label.label import PrintLabelError
@@ -61,6 +60,8 @@ class BaseActionView(ModelsViewMixin, EdcBaseViewMixin,
     def post_url(self):
         """Returns a URL.
         """
+        print(self.post_url_name,
+              " self.post_url_name self.post_url_name self.post_url_name")
         return reverse(self.post_url_name, kwargs=self.url_kwargs)
 
     def post(self, request, *args, **kwargs):

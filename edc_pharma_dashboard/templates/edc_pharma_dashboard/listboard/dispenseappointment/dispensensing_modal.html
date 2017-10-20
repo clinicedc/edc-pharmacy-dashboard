@@ -1,17 +1,7 @@
 <!-- Modal -->
 {% block extra-scripts %}
-    <script type="text/javascript" charset="utf8">
-        $(document).ready(function () {
-            $('#selectAllMembersButton').click( function() {
-                $(":checkbox").prop("checked", true);
-            });
-
-            $('#deSelectAllMembersButton').click( function() {
-                $(":checkbox").prop("checked", false);
-            });
-        });
-    </script>
 {% endblock extra-scripts %}
+
 <div id="dispenseMedicationModal-{{ page_obj.start_index|add:forloop.counter0 }}" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
@@ -26,7 +16,7 @@
             </span>
         </h5>
       </div>
-      <form id="form-dispense" method="post" action="{% url dispensing_form_url_name wrapped.object.schedule.subject_identifier wrapped.dispense_timepoint_id %}">
+      <form id="form-dispense" method="post" action="{% url dispensing_form_url_name wrapped.object.schedule.subject_identifier wrapped.dispense_appointment_id %}">
       <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}'/>
       <input type='hidden' name='timepoint_id' value='{{ csrf_token }}'/>
       <div class="modal-body">
@@ -50,23 +40,23 @@
                     </div>
                   <div class="panel panel-default">
                      <div class="list-group">
-                         {% for med in wrapped.medications %}
+                         {% for prescription in wrapped.prescriptions %}
                                <a class="list-group-item" href="#">
 	                                <div class="checkbox">
 	                                  <label>
-	                                    <input type="checkbox" value="{{med.name}}" name="med_{{forloop.counter}}">
+	                                    <input type="checkbox" value="{{med.definition.name}}" name="med_{{forloop.counter}}">
 	                                         <span class="text text-info">
-	                                            <b>Name:</b> {{med.definition.description}}
+	                                            <b>Name:</b> {{prescription.description}}
 	                                         </span> 
 	                                         <span class="text text-info">
                                                 <b></b>
                                              </span>
                                              
                                              <span class="text text-info">
-                                                <b>, BW: </b>{{med.weight}} in Kg
+                                                <b>, BW: </b>{{prescription.weight}} in Kg
                                              </span>
                                              <span class="text text-info">
-                                                <b>, Required Quantity:</b> {{med.required_quantity}} {{med.definition.category}}(s)
+                                                <b>, Required Quantity:</b> {{prescription.result}} {{prescription.category}}(s)
                                              </span>
 	                                    </label>
 	                                </div>
@@ -86,7 +76,6 @@
         </button>
       </div>
     </form>
-
     </div>
   </div>
 </div>

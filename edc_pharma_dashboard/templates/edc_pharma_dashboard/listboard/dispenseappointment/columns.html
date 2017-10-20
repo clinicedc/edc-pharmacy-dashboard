@@ -1,17 +1,19 @@
 
 <!-- begin columns -->
     <td>
+      <input id="selected_item_{{wrapped.object.id}}" form="{{ form_action_name }}" name="{{ form_action_selected_items_name }}" type="checkbox" value="{{wrapped.object.id}}"/>
+    </td>
+    <td>
       <span class="text text-identifier">
       {{ wrapped.object.schedule.subject_identifier }}
       </span>
     </td>
-    <td>{{wrapped.object.schedule.arm}}</td>
-     <td>
-       <a class="btn btn-success btn-sm" role="button"   
-        title="Go to subject's dashboard" href="/subject/dashboard/{{wrapped.object.schedule.subject_identifier}}/">
-        <i class="fa fa-user-circle-o fa-sm"></i> 
-        Dashboard
-       </a>     
+    <td>
+    {% if wrapped.object.schedule.arm == 'single_dose' %} 
+        Single Dose
+    {% else %}
+        Control
+    {% endif %}
     </td>
     <td>
    <div class="btn-group">
@@ -23,21 +25,15 @@
            <span class="text text-danger"><i class="fa fa-times-circle fa-lg" title="Not dispensed"></i></span>
        {% endif %}
       </button>
-    
-       <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Dispense Appointment Date">
-        <i class="fa fa-hospital-o" aria-hidden="true"></i>
-        {{wrapped.object.appt_datetime | date:"Y-m-d"}}
-      </button>
-      
       <div class="btn-group" title="View Medication list to dispense">
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#dispenseMedicationModal-{{ page_obj.start_index|add:forloop.counter0 }}">
-        <i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i></button>
-        {% include 'edc_pharma_dashboard/listboard/dispensetimepoint/dispensensing_modal.html' %}
+        <i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i> <small>Prescriptions</small></button>
+
       </div>
 
       <a 
         {% if wrapped.can_dispense_labels %}
-              href="{% url dispense_listbord_url_name wrapped.object.schedule.subject_identifier wrapped.dispense_timepoint_id %}"
+              href="#"
         {% else %}
             href="#"
         {% endif %}
@@ -46,6 +42,11 @@
          <i class="fa fa-print" aria-hidden="true"></i>
       </a>
     </div>
+    </td>
+     <td>
+       {{wrapped.object.appt_datetime | date:"Y-m-d" }}
+    </td>
+    <td>
     </td>
     <td>
         {{wrapped.object.schedule.description}}

@@ -3,8 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from edc_pharma_dashboard.model_wrappers import DispenseAppointmentModelWrapper
-from edc_pharma_dashboard.views.listboard_filters import (
-    DispenseAppointmentListboardViewFilters)
+from edc_pharma_dashboard.views.listboard_filters import AppointmentListboardViewFilters
 
 from .base_listboard import BaseListboardView
 
@@ -13,17 +12,18 @@ app_config = django_apps.get_app_config('edc_pharma_dashboard')
 edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 
 
-class DispenseAppointmentListboardView(BaseListboardView):
+class AppointmentListboardView(BaseListboardView):
 
     navbar_item_selected = 'dispenseappointment'
 
     model = edc_pharma_app_config.dispense_appointment_model
     model_wrapper_cls = DispenseAppointmentModelWrapper
+    form_action_url_name = f'edc_pharma_dashboard:dispensing_action_url'
     listboard_url_name = app_config.dispense_appointment_listboard_url_name
     prescription_listbord_url_name = app_config.prescription_listboard_url_name
-    listboard_template_name = app_config.dispense_appointment_listboard_template_name
+    listboard_template_name = app_config.appointment_listboard_template_name
     show_all = True
-    listboard_view_filters = DispenseAppointmentListboardViewFilters()
+    listboard_view_filters = AppointmentListboardViewFilters()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -43,7 +43,7 @@ class ApprovePrescriptionView(BaseActionView):
             for selected_item in self.selected_items:
                 prescription = self.prescription_model.objects.get(
                     pk=selected_item)
-#                 approved += 1
+                approved += 1
                 prescription.is_approved = True
                 prescription.save()
             if approved > 0:

@@ -16,7 +16,7 @@ class AppointmentListboardView(BaseListboardView):
 
     navbar_item_selected = 'appointment'
 
-    model = edc_pharma_app_config.dispense_appointment_model
+    model = edc_pharma_app_config.appointment_model
     model_wrapper_cls = AppointmentModelWrapper
     form_action_url_name = f'edc_pharma_dashboard:dispensing_action_url'
     listboard_url_name = app_config.appointment_listboard_url_name
@@ -29,7 +29,7 @@ class AppointmentListboardView(BaseListboardView):
         context = super().get_context_data(**kwargs)
         context.update(
             listboard_url_name=self.listboard_url_name,
-            dispense_listbord_url_name=self.prescription_listbord_url_name,
+            prescription_listbord_url_name=self.prescription_listbord_url_name,
             dispensing_form_url_name=app_config.dispensing_form_url_name)
         return context
 

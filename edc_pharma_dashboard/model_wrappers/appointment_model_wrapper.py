@@ -9,10 +9,10 @@ app_config = django_apps.get_app_config('edc_pharma_dashboard')
 edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 
 
-class DispenseAppointmentModelWrapper(ModelWrapper):
+class AppointmentModelWrapper(ModelWrapper):
 
     model = 'edc_pharma.dispenseappointment'
-    next_url_name = app_config.dispense_appointment_listboard_url_name
+    next_url_name = app_config.appointment_listboard_url_name
     querystring_attrs = ['subject_identifier']
 
     @property

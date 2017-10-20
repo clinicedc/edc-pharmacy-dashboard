@@ -1,2 +1,2 @@
-from edc_pharma_dashboard.views.listboard_views.appointment_listboard_view import DispenseAppointmentListboardView
+from .appointment_listboard_view import AppointmentListboardView
 from .prescription_listboard_view import PrescriptionListboardView

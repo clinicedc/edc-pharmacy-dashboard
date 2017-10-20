@@ -4,8 +4,8 @@ navbar_items = []
 config = [
     ('edc_pharma_dashboard', 'prescription', 'Prescriptions', None,
      'prescription_listboard_url_name'),
-    ('edc_pharma_dashboard', 'dispenseappointment', 'Dispensing', None,
-     'dispense_appointment_listboard_url_name'),
+    ('edc_pharma_dashboard', 'appointment', 'Dispensing', None,
+     'appointment_listboard_url_name'),
     ('edc_pharma_dashboard', 'home', '', 'fa-medkit', 'home_url_name')
 ]
 for app_config_name, name, label, fa_icon, app_config_attr in config:

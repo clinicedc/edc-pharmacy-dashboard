@@ -14,8 +14,8 @@ edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 
 class DispensingActionView(BaseActionView):
 
-    post_url_name = app_config.dispense_appointment_listboard_url_name
-    listboard_url_name = app_config.dispense_appointment_listboard_url_name
+    post_url_name = app_config.appointment_listboard_url_name
+    listboard_url_name = app_config.appointment_listboard_url_name
     valid_form_actions = ['dispensing']
     prescription_model = django_apps.get_model(
         *edc_pharma_app_config.prescription_model.split('.'))

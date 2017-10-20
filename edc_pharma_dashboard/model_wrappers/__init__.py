@@ -1,2 +1,2 @@
-from .dispense_appointment_model_wrapper import DispenseAppointmentModelWrapper
+from .appointment_model_wrapper import AppointmentModelWrapper
 from .prescription_modelwrapper import PrescriptionModelWrapper

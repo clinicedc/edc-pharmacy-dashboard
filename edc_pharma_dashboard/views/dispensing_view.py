@@ -1,5 +1,7 @@
 from edc_base.view_mixins import EdcBaseViewMixin
 from edc_dashboard.view_mixins import DashboardViewMixin
+from edc_pharma.dispense.dispense import Dispense
+from edc_pharma.models.prescription import Prescription
 
 from django import forms
 from django.apps import apps as django_apps
@@ -26,17 +28,22 @@ app_config = django_apps.get_app_config('edc_pharma_dashboard')
 
 class DispenseViewMixin(DispensePrintLabelMixin):
 
+    dispense_cls = Dispense
+
     def get_success_url(self):
         return '/'
 
     def post(self, request, *args, **kwargs):
         subject_identifier = kwargs.get('subject_identifier')
         printed_labels = []
+        prescriptions = []
         for key in self.request.POST:
             if key.startswith('med'):
-                value = self.request.POST.get(key)
-                print(
-                    value, "{{{{{{{{{{{{{{{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}")
+                p = Prescription.objects.get(id=self.request.POST.get(key))
+                prescriptions.add(p)
+        if prescriptions:
+            pass
+
         if printed_labels:
             msg = 'Successfully printed {}.'.format(
                 ', '.join(printed_labels))

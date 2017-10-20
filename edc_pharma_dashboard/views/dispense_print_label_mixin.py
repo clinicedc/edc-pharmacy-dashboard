@@ -5,11 +5,15 @@ from django.contrib import messages
 
 class DispensePrintLabelMixin:
 
+    def prescriptions(self):
+        pass
+
     def print_labels(self, request, **kwargs):
         try:
             dispense_print = self.dispense_cls(
                 user=request.user,
                 subject_identifier=kwargs.get('subject_identifier'),
+                prescriptions=self.prescriptions,
                 appointment_id=kwargs.get('appointment'))
         except PrintServerSelectPrinterError as e:
             messages.error(

@@ -5,7 +5,7 @@
     </td>
     <td>
     <div class="btn-group">
-        <a title="Edit Prescription" role="button" href="{{ wrapped.href }}" class="btn {% if wrapped.is_pending %} btn-warning {% else %} btn-default {% endif %} btn-sm"><i class="fa fa-pencil fa-fw"></i></a>
+        <a title="Edit Prescription" role="button" href="{{ wrapped.href }}" class="btn {% if wrapped.is_pending %} btn-warning {% else %} {% if wrapped.object.is_approved %} btn-info {% else %} btn-default {%  endif %} {% endif %} btn-sm"><i class="fa fa-pencil fa-fw"></i></a>
         <a title="Dispensing Listboard" role="button" href="{% url appointment_listboard_url_name wrapped.object.dispense_appointment.schedule.subject_identifier %}" class="btn btn-default btn-sm"><i class="fa fa-calendar fa-fw"></i></a>      
             <span class="text text-identifier">
         </span>&nbsp;

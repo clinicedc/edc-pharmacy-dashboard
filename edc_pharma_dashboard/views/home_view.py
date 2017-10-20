@@ -21,7 +21,7 @@ class HomeView(EdcBaseViewMixin, AppConfigViewMixin, TemplateView):
         context.update(
             base_template_name=self.base_template_name,
             randomized_subjects_url=app_config.prescription_listboard_url_name,
-            dispense_appt_subjects_url=app_config.dispense_appointment_listboard_url_name,
+            dispense_appt_subjects_url=app_config.appointment_listboard_url_name,
         )
         return context
 

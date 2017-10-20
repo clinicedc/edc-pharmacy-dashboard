@@ -1,3 +1,5 @@
+from edc_pharma.medications import PrescriptionApprovalValidator, PrescriptionApprovalValidatorError
+
 from django.apps import apps as django_apps
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -43,11 +45,18 @@ class ApprovePrescriptionView(BaseActionView):
             for selected_item in self.selected_items:
                 prescription = self.prescription_model.objects.get(
                     pk=selected_item)
-                approved += 1
-                prescription.is_approved = True
-                prescription.save()
+                try:
+                    PrescriptionApprovalValidator(prescriptions=[prescription])
+                except PrescriptionApprovalValidatorError as e:
+                    message = e
+                else:
+                    approved += 1
+                    prescription.is_approved = True
+                    prescription.save()
             if approved > 0:
                 message = (
                     '{} items have been approved.'.format(
                         approved))
                 messages.success(self.request, message)
+            else:
+                messages.error(self.request, message)

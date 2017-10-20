@@ -1,4 +1,4 @@
-from edc_pharma.dispense import DispenseAction
+from edc_pharma.dispense import DispenseAction, MedicationNotApprovedError
 
 from django.apps import apps as django_apps
 from django.contrib import messages
@@ -41,10 +41,16 @@ class DispensingActionView(BaseActionView):
         else:
             dispensed = 0
             for selected_item in self.selected_items:
-                DispenseAction(appointment_id=selected_item)
+                try:
+                    DispenseAction(appointment_id=selected_item)
+                except MedicationNotApprovedError as e:
+                    message = e
+                    break
                 dispensed = dispensed + 1
             if dispensed > 0:
                 message = (
                     '{} items have been dispensed.'.format(
                         dispensed))
                 messages.success(self.request, message)
+            else:
+                messages.warning(self.request, message)

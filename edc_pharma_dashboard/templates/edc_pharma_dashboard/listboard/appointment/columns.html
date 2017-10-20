@@ -28,18 +28,19 @@
       <div class="btn-group" title="View Medication list to dispense">
         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#dispenseMedicationModal-{{ page_obj.start_index|add:forloop.counter0 }}">
         <i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i> <small>Prescriptions</small></button>
-        {% include 'edc_pharma_dashboard/listboard/dispenseappointment/dispensensing_modal.html' %}
+        {% include 'edc_pharma_dashboard/listboard/appointment/dispensensing_modal.html' %}
       </div>
 
       <a 
         {% if wrapped.can_dispense_labels %}
-              href="{% url dispense_listbord_url_name wrapped.object.schedule.subject_identifier wrapped.dispense_appointment_id %}"
+              href="{% url dispense_print_label_action_url_name wrapped.object.schedule.subject_identifier wrapped.appointment_id %}"
         {% else %}
             href="#"
         {% endif %}
       class="btn btn-default" role="button"
       title="Print medication labels.">
          <i class="fa fa-print" aria-hidden="true"></i>
+         {{appointment_listboard_url_name}}
       </a>
     </div>
     </td>

@@ -13,7 +13,7 @@ from .base_action_view import BaseActionView
 app_config = django_apps.get_app_config('edc_pharma_dashboard')
 
 
-class DispenseActionView(DispensePrintLabelMixin, BaseActionView):
+class DispensePrintLabelActionView(DispensePrintLabelMixin, BaseActionView):
 
     post_url_name = app_config.prescription_listboard_url_name
     valid_form_actions = ['print_labels']

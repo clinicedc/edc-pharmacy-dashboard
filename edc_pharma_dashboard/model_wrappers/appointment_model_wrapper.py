@@ -28,7 +28,7 @@ class AppointmentModelWrapper(ModelWrapper):
         return Prescription.objects.filter(dispense_appointment=self.object)
 
     @property
-    def dispense_appointment_id(self):
+    def appointment_id(self):
         return str(self.object.id)
 
     @property

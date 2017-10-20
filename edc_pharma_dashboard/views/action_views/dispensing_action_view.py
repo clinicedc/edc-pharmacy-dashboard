@@ -42,6 +42,7 @@ class DispensingActionView(BaseActionView):
             dispensed = 0
             for selected_item in self.selected_items:
                 DispenseAction(appointment_id=selected_item)
+                dispensed = dispensed + 1
             if dispensed > 0:
                 message = (
                     '{} items have been dispensed.'.format(

@@ -18,3 +18,4 @@ class AppConfig(DjangoAppConfig):
     prescription_listboard_url_name = f'{dashboard_name}:prescription_listboard_url'
     appointment_listboard_url_name = f'{dashboard_name}:appointment_listboard_url'
     dispensing_form_url_name = f'{dashboard_name}:dispensing_form_url'
+    dispense_print_label_action_url_name = f'{dashboard_name}:dispense_print_label_action_url'

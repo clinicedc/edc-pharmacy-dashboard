@@ -21,7 +21,7 @@ class PrescriptionListboardView(BaseListboardView):
     form_action_url_name = f'edc_pharma_dashboard:approve_prescription_url'
     listboard_url_name = app_config.prescription_listboard_url_name
     listboard_template_name = app_config.prescription_listboard_template_name
-    dispense_appointment_listboard_url_name = app_config.appointment_listboard_url_name
+    appointment_listboard_url_name = app_config.appointment_listboard_url_name
     show_all = True
     listboard_view_filters = PrescriptionListboardViewFilters()
 
@@ -29,7 +29,7 @@ class PrescriptionListboardView(BaseListboardView):
         context = super().get_context_data(**kwargs)
         context.update(
             listboard_url_name=self.listboard_url_name,
-            dispense_appointment_listboard_url_name=self.dispense_appointment_listboard_url_name)
+            appointment_listboard_url_name=self.appointment_listboard_url_name)
         return context
 
     @method_decorator(login_required)

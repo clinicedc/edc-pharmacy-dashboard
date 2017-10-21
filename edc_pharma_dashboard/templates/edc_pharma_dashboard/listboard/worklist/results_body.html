@@ -1,0 +1,16 @@
+
+<!-- begin results body -->
+
+{% for result in results %}
+    <tr> 
+    <td>{{ forloop.counter }}</td>
+
+    {% include 'edc_pharma_dashboard/listboard/worklist/buttons_column.html' %}
+
+    {% include 'edc_pharma_dashboard/listboard/worklist/columns.html' %}
+
+    </tr>                       
+
+{% endfor %}
+
+<!-- begin results body -->

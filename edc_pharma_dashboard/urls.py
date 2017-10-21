@@ -4,13 +4,11 @@ from edc_constants.constants import UUID_PATTERN
 
 from django.conf.urls import url, include
 
-from edc_pharma_dashboard.views import DispensingView
-from edc_pharma_dashboard.views import HomeView
-from edc_pharma_dashboard.views.action_views import ApprovePrescriptionView
-from edc_pharma_dashboard.views.action_views import DispensePrintLabelActionView
-from edc_pharma_dashboard.views.action_views import DispensingActionView
-from edc_pharma_dashboard.views.listboard_views import PrescriptionListboardView
-from edc_pharma_dashboard.views.listboard_views.appointment_listboard_view import AppointmentListboardView
+from edc_pharma_dashboard.views import HomeView, DispensingView
+from edc_pharma_dashboard.views.action_views import (
+    ApprovePrescriptionView, DispensePrintLabelActionView, DispensingActionView)
+from edc_pharma_dashboard.views.listboard_views import (
+    AppointmentListboardView, PrescriptionListboardView, WorklistListboardView)
 
 from .patterns import subject_identifier
 
@@ -25,6 +23,8 @@ urlpatterns = [
     #         pattern_name='login_url'), name='logout_url'),
     url(r'^listboard/prescription/$', PrescriptionListboardView.as_view(),
         name='prescription_listboard_url'),
+    url(r'^listboard/worklist/$', WorklistListboardView.as_view(),
+        name='worklist_listboard_url'),
     url(r'^listboard/dispensing/$', AppointmentListboardView.as_view(),
         name='appointment_listboard_url'),
     url(r'^prescription/approve/$', ApprovePrescriptionView.as_view(),

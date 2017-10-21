@@ -1,2 +1,3 @@
 from .appointment_model_wrapper import AppointmentModelWrapper
 from .prescription_model_wrapper import PrescriptionModelWrapper
+from .worklist_model_wrapper import WorklistModelWrapper

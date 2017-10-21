@@ -19,3 +19,6 @@ class AppConfig(DjangoAppConfig):
     appointment_listboard_url_name = f'{dashboard_name}:appointment_listboard_url'
     dispensing_form_url_name = f'{dashboard_name}:dispensing_form_url'
     dispense_print_label_action_url_name = f'{dashboard_name}:dispense_print_label_action_url'
+
+    worklist_listboard_url_name = f'{dashboard_name}:worklist_listboard_url'
+    worklist_listboard_template_name = 'edc_pharma_dashboard/worklist_listboard.html'

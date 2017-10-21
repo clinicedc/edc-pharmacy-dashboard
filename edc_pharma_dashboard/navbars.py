@@ -2,6 +2,8 @@ from edc_base import NavbarItem
 
 navbar_items = []
 config = [
+    ('edc_pharma_dashboard', 'worklist', 'Worklist', None,
+     'worklist_listboard_url_name'),
     ('edc_pharma_dashboard', 'prescription', 'Prescriptions', None,
      'prescription_listboard_url_name'),
     ('edc_pharma_dashboard', 'appointment', 'Dispensing', None,

@@ -10,13 +10,13 @@ class PrescriptionListboardViewFilters(ListboardViewFilters):
         lookup={})
 
     missed = ListboardFilter(
-        name='control_arm',
+        name='control',
         position=10,
         label='Control Arm',
         lookup={'rx': True})
 
     previous = ListboardFilter(
-        name='rx',
+        name='single_dose',
         label='Single Dose',
         position=20,
         lookup={'singledose': True})

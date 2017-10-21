@@ -10,13 +10,13 @@ class AppointmentListboardViewFilters(ListboardViewFilters):
         lookup={})
 
     not_dispensed = ListboardFilter(
-        name='control_arm',
+        name='control',
         position=10,
         label='Control Arm',
         lookup={'rx': True})
 
     dispensed = ListboardFilter(
-        name='rx',
+        name='single_dose',
         label='Single Dose',
         position=20,
-        lookup={'singledose': True})
+        lookup={'rx': True})

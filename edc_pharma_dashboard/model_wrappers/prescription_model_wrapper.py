@@ -1,5 +1,5 @@
 from edc_model_wrapper import ModelWrapper
-from edc_pharma.dispense_appointment_describe import DispenseAppointmentDescribe
+from edc_pharma import AppointmentDescriber
 
 from django.apps import apps as django_apps
 
@@ -16,7 +16,7 @@ class PrescriptionModelWrapper(ModelWrapper):
 
     @property
     def dispense_appt_describe(self):
-        appt_describe = DispenseAppointmentDescribe(
+        appt_describe = AppointmentDescriber(
             dispense_appointment=self.object.dispense_appointment)
         return appt_describe
 

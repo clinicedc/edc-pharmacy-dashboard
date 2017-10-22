@@ -1,4 +1,5 @@
 from edc_model_wrapper import ModelWrapper
+from edc_pharma.models.dispense_appointment import DispenseAppointment
 
 from django.apps import apps as django_apps
 
@@ -18,7 +19,6 @@ class WorklistModelWrapper(ModelWrapper):
         return self.object.subject_identifier
 
     @property
-    def is_pending(self):
-        return (
-            self.dispense_appt_describe.is_next_pending_appointment()
-            and not self.object.is_approved)
+    def appointments(self):
+        return [appt.is_dispensed for appt in DispenseAppointment.objects.filter(
+            subject_identifier=self.subject_identifier)]

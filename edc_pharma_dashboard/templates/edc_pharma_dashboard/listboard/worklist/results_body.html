@@ -1,7 +1,7 @@
 
 <!-- begin results body -->
 
-{% for result in results %}
+{% for wrapped in object_list %}
     <tr> 
     <td>{{ forloop.counter }}</td>
 
@@ -10,7 +10,6 @@
     {% include 'edc_pharma_dashboard/listboard/worklist/columns.html' %}
 
     </tr>                       
-
 {% endfor %}
 
 <!-- begin results body -->

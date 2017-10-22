@@ -19,7 +19,7 @@ class WorklistListboardView(BaseListboardView):
     model_wrapper_cls = WorklistModelWrapper
     listboard_url_name = app_config.worklist_listboard_url_name
     listboard_template_name = app_config.worklist_listboard_template_name
-    prescription_listboard_url_name = app_config.appointment_listboard_url_name
+    prescription_listboard_url_name = app_config.prescription_listboard_url_name
     show_all = True
     listboard_view_filters = WorklistListboardViewFilters()
 

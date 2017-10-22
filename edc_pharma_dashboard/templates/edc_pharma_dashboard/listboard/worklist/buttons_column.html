@@ -3,13 +3,10 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
-	<td>
-		<input id="selected_item_{{result.id}}" form="{{ form_action_name }}" name="{{ form_action_selected_items_name }}" type="checkbox" value="{{result.id}}" />
-	</td>
     <td style="white-space: nowrap">
 
-	      <a role="button" title="back to enumeration" class="btn btn-sm btn-default"
-	        href="">
+	      <a role="button" title="Go Prescription" class="btn btn-sm btn-default"
+	        href="{% url prescription_listboard_url_name wrapped.object.subject_identifier %}">
 	            <i class="fa fa-sitemap fa-fw"></i>
 	      </a>
     </td>

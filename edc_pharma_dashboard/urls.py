@@ -36,7 +36,6 @@ urlpatterns = [
         '(?P<appointment>' + UUID_PATTERN.pattern + ')/',
         DispensePrintLabelActionView.as_view(),
         name='dispense_print_label_action_url'),
-
     url(r'^listboard/dispensing/'
         '(?P<subject_identifier>' + subject_identifier + ')/',
         AppointmentListboardView.as_view(),
@@ -45,6 +44,9 @@ urlpatterns = [
         '(?P<subject_identifier>' + subject_identifier + ')/'
         '(?P<appointment>' + UUID_PATTERN.pattern + ')/',
         DispensingView.as_view(), name='dispensing_form_url'),
-
+    url(r'^listboard/prescription/'
+        '(?P<subject_identifier>' + subject_identifier + ')/',
+        PrescriptionListboardView.as_view(),
+        name='prescription_listboard_url'),
     url(r'', HomeView.as_view(), name='home_url'),
 ]

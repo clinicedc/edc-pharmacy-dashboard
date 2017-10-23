@@ -16,9 +16,10 @@
             </span>
         </h5>
       </div>
-      <form id="form-dispense" method="post" action="{% url dispensing_form_url_name wrapped.object.schedule.subject_identifier wrapped.appointment_id %}">
+      <form id="form-dispense" method="post" action="{% url dispensing_form_url_name wrapped.object.schedule.subject_identifier wrapped.appointment_id %}?">
       <input type='hidden' name='csrfmiddlewaretoken' value='{{ csrf_token }}'/>
       <input type='hidden' name='timepoint_id' value='{{ csrf_token }}'/>
+      <input type='hidden' name='action' value='print_selected'/>
       <div class="modal-body">
                 <div class="panel-group">
                     <div class="panel-heading">

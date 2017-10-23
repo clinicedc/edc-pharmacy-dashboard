@@ -35,22 +35,30 @@ class DispenseViewMixin(DispensePrintLabelMixin):
 
     def post(self, request, *args, **kwargs):
         subject_identifier = kwargs.get('subject_identifier')
-        printed_labels = []
         prescriptions = []
+
+        error_message = None
         for key in self.request.POST:
             if key.startswith('med'):
                 p = Prescription.objects.get(id=self.request.POST.get(key))
-                prescriptions.add(p)
-        if prescriptions:
-            pass
-
-        if printed_labels:
-            msg = 'Successfully printed {}.'.format(
-                ', '.join(printed_labels))
-            messages.add_message(request, messages.SUCCESS, msg)
+                if not p.dispense_appointment.is_dispensed:
+                    error_message = "Dispensing is required before printing labels."
+                    break
+                prescriptions.append(p)
+        if not error_message:
+            action = self.request.POST.get('action')
+            dispense = Dispense(prescriptions=prescriptions, action=action)
+            if dispense.printed_labels:
+                for label in dispense.printed_labels:
+                    medication = label.get('medication')
+                    subject_identifier = label.get('subject_identifier')
+                    msg = f' Printed {medication} for {subject_identifier}.'
+                    messages.add_message(request, messages.SUCCESS, msg)
+            else:
+                msg = f'Nothing selected for {subject_identifier} FFFF.'
+                messages.add_message(request, messages.ERROR, msg)
         else:
-            msg = f'Nothing selected for {subject_identifier}.'
-            messages.add_message(request, messages.ERROR, msg)
+            messages.add_message(request, messages.WARNING, error_message)
         url = reverse(
             app_config.appointment_listboard_url_name,
             kwargs={'subject_identifier': subject_identifier})

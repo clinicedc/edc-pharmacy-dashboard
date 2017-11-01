@@ -1,7 +1,7 @@
 from django.apps import apps as django_apps
 
 
-app_name = 'edc_pharma_dashboard'
+app_name = 'edc_pharmacy_dashboard'
 app_config = django_apps.get_app_config(app_name)
 
 

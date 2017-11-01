@@ -1,10 +1,9 @@
-from edc_model_wrapper import ModelWrapper
-from edc_pharma import AppointmentDescriber
-
 from django.apps import apps as django_apps
+from edc_model_wrapper import ModelWrapper
+from edc_pharmacy import AppointmentDescriber
 
 
-app_config = django_apps.get_app_config('edc_pharma_dashboard')
+app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
 edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 
 

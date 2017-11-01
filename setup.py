@@ -12,18 +12,18 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='edc-pharma-dashboard',
+    name='edc-pharmacy-dashboard',
     version='0.1.0',
     author=u'Erik van Widenfelt',
     author_email='ew2789@gmail.com',
     packages=find_packages(),
     include_package_data=True,
-    url='https://github.com/botswana-harvard/edc-pharma-dashboard',
+    url='https://github.com/botswana-harvard/edc-pharmacy-dashboard',
     license='GPL license, see LICENSE',
-    description='ambition.',
+    description='edc pharmacy dashboard classes.',
     long_description=README,
     zip_safe=False,
-    keywords='django pharma',
+    keywords='django edc pharmacy',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',

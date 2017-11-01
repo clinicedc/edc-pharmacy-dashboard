@@ -1,5 +1,4 @@
-from edc_pharma.dispense import DispenseAction, MedicationNotApprovedError
-
+from edc_pharmacy.dispense import DispenseAction, MedicationNotApprovedError
 from django.apps import apps as django_apps
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -8,7 +7,7 @@ from django.utils.decorators import method_decorator
 from .base_action_view import BaseActionView
 
 
-app_config = django_apps.get_app_config('edc_pharma_dashboard')
+app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
 edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 
 

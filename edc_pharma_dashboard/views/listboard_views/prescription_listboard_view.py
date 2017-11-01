@@ -2,23 +2,21 @@ from django.apps import apps as django_apps
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from edc_pharma_dashboard.model_wrappers import PrescriptionModelWrapper
-from edc_pharma_dashboard.views.listboard_filters import PrescriptionListboardViewFilters
-
+from ...model_wrappers import PrescriptionModelWrapper
+from ..listboard_filters import PrescriptionListboardViewFilters
 from .base_listboard import BaseListboardView
 
-
-app_config = django_apps.get_app_config('edc_pharma_dashboard')
-edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
+app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
+edc_pharmacy_app_config = django_apps.get_app_config('edc_pharmacy')
 
 
 class PrescriptionListboardView(BaseListboardView):
 
     navbar_item_selected = 'prescription'
 
-    model = edc_pharma_app_config.prescription_model
+    model = edc_pharmacy_app_config.prescription_model
     model_wrapper_cls = PrescriptionModelWrapper
-    form_action_url_name = f'edc_pharma_dashboard:approve_prescription_url'
+    form_action_url_name = f'edc_pharmacy_dashboard:approve_prescription_url'
     listboard_url_name = app_config.prescription_listboard_url_name
     listboard_template_name = app_config.prescription_listboard_template_name
     appointment_listboard_url_name = app_config.appointment_listboard_url_name

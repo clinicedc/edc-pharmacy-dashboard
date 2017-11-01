@@ -1,16 +1,14 @@
-from edc_pharma.dispense import Dispense
-
 from django.apps import apps as django_apps
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseRedirect
 from django.utils.decorators import method_decorator
+from edc_pharmacy.dispense import Dispense
 
 from ..dispense_print_label_mixin import DispensePrintLabelMixin
-
 from .base_action_view import BaseActionView
 
 
-app_config = django_apps.get_app_config('edc_pharma_dashboard')
+app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
 
 
 class DispensePrintLabelActionView(DispensePrintLabelMixin, BaseActionView):

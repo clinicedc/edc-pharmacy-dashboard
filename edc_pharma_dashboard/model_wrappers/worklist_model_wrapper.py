@@ -1,10 +1,9 @@
-from edc_model_wrapper import ModelWrapper
-from edc_pharma.models.dispense_appointment import DispenseAppointment
-
 from django.apps import apps as django_apps
+from edc_model_wrapper import ModelWrapper
+from edc_pharmacy.models import Appointment
 
 
-app_config = django_apps.get_app_config('edc_pharma_dashboard')
+app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
 edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 
 
@@ -20,5 +19,5 @@ class WorklistModelWrapper(ModelWrapper):
 
     @property
     def appointments(self):
-        return [appt.is_dispensed for appt in DispenseAppointment.objects.filter(
+        return [appt.is_dispensed for appt in Appointment.objects.filter(
             subject_identifier=self.subject_identifier)]

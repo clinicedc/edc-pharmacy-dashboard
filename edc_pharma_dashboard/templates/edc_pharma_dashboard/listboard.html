@@ -1,4 +1,4 @@
-{% extends 'edc_pharma_dashboard/base_listboard.html' %}
+{% extends 'edc_pharmacy_dashboard/base_listboard.html' %}
 
 {% load staticfiles %}
 {% load tz %}
@@ -85,14 +85,14 @@
           <thead>
 
             {% block results_header %}
-                {% include 'edc_pharma_dashboard/listboard/prescription/results_header.html' %}
+                {% include 'edc_pharmacy_dashboard/listboard/prescription/results_header.html' %}
             {% endblock results_header %}
 
           </thead>
           <tbody>
 
             {% block results_body %}
-                {% include 'edc_pharma_dashboard/listboard/prescription/results_body.html' %}
+                {% include 'edc_pharmacy_dashboard/listboard/prescription/results_body.html' %}
             {% endblock results_body %}
           </tbody>
         </table>

@@ -1,7 +1,3 @@
-from edc_base.view_mixins import EdcBaseViewMixin
-from edc_dashboard.view_mixins import AppConfigViewMixin
-from edc_label.label import PrintLabelError
-from edc_label.print_server import PrintServerSelectPrinterError
 import urllib
 
 from django.apps import apps as django_apps
@@ -10,6 +6,10 @@ from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
 from django.utils.text import slugify
 from django.views.generic.base import TemplateView
+from edc_base.view_mixins import EdcBaseViewMixin
+from edc_dashboard.view_mixins import AppConfigViewMixin
+from edc_label.label import PrintLabelError
+from edc_label.print_server import PrintServerSelectPrinterError
 
 from ..mixins.models_view_mixin import ModelsViewMixin
 
@@ -18,16 +18,16 @@ class InvalidPostError(Exception):
     pass
 
 
-app_name = 'edc_pharma_dashboard'
+app_name = 'edc_pharmacy_dashboard'
 app_config = django_apps.get_app_config(app_name)
 
 
 class BaseActionView(ModelsViewMixin, EdcBaseViewMixin,
                      AppConfigViewMixin, TemplateView):
 
-    template_name = 'edc_pharma_dashboard/home.html'
+    template_name = 'edc_pharmacy_dashboard/home.html'
     post_url_name = None
-    app_config_name = 'edc_pharma_dashboard'
+    app_config_name = 'edc_pharmacy_dashboard'
 
     valid_form_actions = []
     redirect_querystring = {}

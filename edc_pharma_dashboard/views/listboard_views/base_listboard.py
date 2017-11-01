@@ -1,8 +1,7 @@
+from django.urls.base import reverse
 from edc_base.view_mixins import EdcBaseViewMixin
 from edc_dashboard.view_mixins import AppConfigViewMixin, ListboardFilterViewMixin
 from edc_dashboard.views import ListboardView
-
-from django.urls.base import reverse
 
 from ..mixins import UrlsViewMixin, ModelsViewMixin
 
@@ -12,7 +11,7 @@ class BaseListboardView(UrlsViewMixin,
                         ModelsViewMixin, AppConfigViewMixin,
                         EdcBaseViewMixin, ListboardView):
 
-    app_config_name = 'edc_pharma_dashboard'
+    app_config_name = 'edc_pharmacy_dashboard'
     navbar_name = 'pharma'
     ordering = ['created']
 

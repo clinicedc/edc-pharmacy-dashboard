@@ -1,6 +1,5 @@
-from edc_label.print_server import PrintServerSelectPrinterError
-
 from django.contrib import messages
+from edc_label.print_server import PrintServerSelectPrinterError
 
 
 class DispensePrintLabelMixin:

@@ -4,23 +4,21 @@ from edc_constants.constants import UUID_PATTERN
 
 from django.conf.urls import url, include
 
-from edc_pharma_dashboard.views import HomeView, DispensingView
-from edc_pharma_dashboard.views.action_views import (
+from edc_pharmacy_dashboard.views import HomeView, DispensingView
+from edc_pharmacy_dashboard.views.action_views import (
     ApprovePrescriptionView, DispensePrintLabelActionView, DispensingActionView)
-from edc_pharma_dashboard.views.listboard_views import (
+from edc_pharmacy_dashboard.views.listboard_views import (
     AppointmentListboardView, PrescriptionListboardView, WorklistListboardView)
 
 from .patterns import subject_identifier
+from edc_base.views import LoginView, LogoutView
+from django.conf import settings
 
 
-app_name = 'edc_pharma_dashboard'
+app_name = 'edc_pharmacy_dashboard'
 
 
 urlpatterns = [
-    url(r'^tz_detect/', include('tz_detect.urls')),
-    #     url(r'login', LoginView.as_view(), name='login_url'),
-    #     url(r'logout', LogoutView.as_view(
-    #         pattern_name='login_url'), name='logout_url'),
     url(r'^listboard/prescription/$', PrescriptionListboardView.as_view(),
         name='prescription_listboard_url'),
     url(r'^listboard/worklist/$', WorklistListboardView.as_view(),
@@ -48,5 +46,13 @@ urlpatterns = [
         '(?P<subject_identifier>' + subject_identifier + ')/',
         PrescriptionListboardView.as_view(),
         name='prescription_listboard_url'),
-    url(r'', HomeView.as_view(), name='home_url'),
+    # url(r'', HomeView.as_view(), name='home_url'),
 ]
+
+
+# if settings.APP_NAME == 'edc_pharmacy_dashboard':
+#     urlpatterns += [
+#         url(r'login', LoginView.as_view(), name='login_url'),
+#         url(r'logout', LogoutView.as_view(
+#             pattern_name='login_url'), name='logout_url'),
+#     ]

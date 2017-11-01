@@ -1,8 +1,3 @@
-from edc_base.view_mixins import EdcBaseViewMixin
-from edc_dashboard.view_mixins import DashboardViewMixin
-from edc_pharma.dispense.dispense import Dispense
-from edc_pharma.models.prescription import Prescription
-
 from django import forms
 from django.apps import apps as django_apps
 from django.contrib import messages
@@ -11,6 +6,10 @@ from django.forms.forms import Form
 from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
 from django.views.generic.base import TemplateView
+from edc_base.view_mixins import EdcBaseViewMixin
+from edc_dashboard.view_mixins import DashboardViewMixin
+from edc_pharmacy.dispense.dispense import Dispense
+from edc_pharmacy.models import Prescription
 
 from .dispense_print_label_mixin import DispensePrintLabelMixin
 
@@ -23,7 +22,7 @@ class DispenseForm(Form):
     medications = forms.MultipleChoiceField()
 
 
-app_config = django_apps.get_app_config('edc_pharma_dashboard')
+app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
 
 
 class DispenseViewMixin(DispensePrintLabelMixin):
@@ -67,4 +66,4 @@ class DispenseViewMixin(DispensePrintLabelMixin):
 
 class DispensingView(DispenseViewMixin, DashboardViewMixin,
                      EdcBaseViewMixin, TemplateView):
-    app_config_name = 'edc_pharma'
+    app_config_name = 'edc_pharmacy'

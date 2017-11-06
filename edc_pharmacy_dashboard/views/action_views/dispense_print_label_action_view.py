@@ -2,7 +2,7 @@ from django.apps import apps as django_apps
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseRedirect
 from django.utils.decorators import method_decorator
-from edc_pharmacy.dispense import Dispense
+# from edc_pharmacy.dispense import Dispense
 
 from ..dispense_print_label_mixin import DispensePrintLabelMixin
 from .base_action_view import BaseActionView
@@ -17,7 +17,7 @@ class DispensePrintLabelActionView(DispensePrintLabelMixin, BaseActionView):
     valid_form_actions = ['print_labels']
     action_name = 'pharma'
 
-    dispense_cls = Dispense
+    # dispense_cls = Dispense
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):

@@ -8,13 +8,18 @@ from django.urls.base import reverse
 from django.views.generic.base import TemplateView
 from edc_base.view_mixins import EdcBaseViewMixin
 from edc_dashboard.view_mixins import DashboardViewMixin
-from edc_pharmacy.dispense.dispense import Dispense
-from edc_pharmacy.models import Prescription
+# from edc_pharmacy.dispense.dispense import Dispense
+# from edc_pharmacy.models import Prescription
 
 from .dispense_print_label_mixin import DispensePrintLabelMixin
 
 
 style = color_style()
+
+
+class Dispense:
+    def __init__(self, **kwargs):
+        pass
 
 
 class DispenseForm(Form):
@@ -28,6 +33,7 @@ app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
 class DispenseViewMixin(DispensePrintLabelMixin):
 
     dispense_cls = Dispense
+    prescription_model = 'edc_pharmacy.prescription'
 
     def get_success_url(self):
         return '/'
@@ -39,14 +45,16 @@ class DispenseViewMixin(DispensePrintLabelMixin):
         error_message = None
         for key in self.request.POST:
             if key.startswith('med'):
-                p = Prescription.objects.get(id=self.request.POST.get(key))
+                p = self.prescription_model_cls.objects.get(
+                    id=self.request.POST.get(key))
                 if not p.dispense_appointment.is_dispensed:
                     error_message = "Dispensing is required before printing labels."
                     break
                 prescriptions.append(p)
         if not error_message:
             action = self.request.POST.get('action')
-            dispense = Dispense(prescriptions=prescriptions, action=action)
+            dispense = self.dispense_cls(
+                prescriptions=prescriptions, action=action)
             if dispense.printed_labels:
                 for label in dispense.printed_labels:
                     medication = label.get('medication')
@@ -62,6 +70,10 @@ class DispenseViewMixin(DispensePrintLabelMixin):
             app_config.appointment_listboard_url_name,
             kwargs={'subject_identifier': subject_identifier})
         return HttpResponseRedirect(url)
+
+    @property
+    def prescription_model_cls(self):
+        return django_apps.get_model(self.prescription_model)
 
 
 class DispensingView(DispenseViewMixin, DashboardViewMixin,

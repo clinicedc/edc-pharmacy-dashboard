@@ -4,7 +4,7 @@
 db.sqlite3
 pharmacy/db.sqlite3
 etc/
-static/django_js_reverse/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

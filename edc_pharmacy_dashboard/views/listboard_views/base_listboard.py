@@ -12,7 +12,7 @@ class BaseListboardView(UrlsViewMixin,
                         EdcBaseViewMixin, ListboardView):
 
     app_config_name = 'edc_pharmacy_dashboard'
-    navbar_name = 'pharma'
+    navbar_name = 'pharmacy'
     ordering = ['created']
 
     search_url_name = None

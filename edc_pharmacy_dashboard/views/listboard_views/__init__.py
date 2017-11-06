@@ -1,3 +1,3 @@
-from .appointment_listboard_view import AppointmentListboardView
-from .prescription_listboard_view import PrescriptionListboardView
-from .worklist_listboard_view import WorklistListboardView
+# from .appointment_listboard_view import AppointmentListboardView
+from .prescribe_listboard_view import PrescribeListboardView
+# from .worklist_listboard_view import WorklistListboardView

@@ -8,18 +8,16 @@ from .base_listboard import BaseListboardView
 
 
 app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
-edc_pharma_app_config = django_apps.get_app_config('edc_pharma')
 
 
 class AppointmentListboardView(BaseListboardView):
 
     navbar_item_selected = 'appointment'
 
-    model = edc_pharma_app_config.appointment_model
+    model = 'edc_pharmacy.appointment'
     model_wrapper_cls = AppointmentModelWrapper
     form_action_url_name = f'edc_pharmacy_dashboard:dispensing_action_url'
     listboard_url_name = app_config.appointment_listboard_url_name
-    prescription_listbord_url_name = app_config.prescription_listboard_url_name
     listboard_template_name = app_config.appointment_listboard_template_name
     show_all = True
     listboard_view_filters = AppointmentListboardViewFilters()
@@ -28,9 +26,7 @@ class AppointmentListboardView(BaseListboardView):
         context = super().get_context_data(**kwargs)
         context.update(
             listboard_url_name=self.listboard_url_name,
-            dispense_print_label_action_url_name=self.app_config.dispense_print_label_action_url_name,
-            prescription_listbord_url_name=self.prescription_listbord_url_name,
-            dispensing_form_url_name=app_config.dispensing_form_url_name)
+        )
         return context
 
     @method_decorator(login_required)

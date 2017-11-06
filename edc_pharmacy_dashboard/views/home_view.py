@@ -4,24 +4,24 @@ from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 from edc_base.view_mixins import EdcBaseViewMixin
 from edc_dashboard.view_mixins import AppConfigViewMixin
+from edc_navbar import NavbarViewMixin
 
 app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
-edc_pharmacy_app_config = django_apps.get_app_config('edc_pharmacy')
 
 
-class HomeView(EdcBaseViewMixin, AppConfigViewMixin, TemplateView):
+class HomeView(EdcBaseViewMixin, NavbarViewMixin, AppConfigViewMixin, TemplateView):
 
     template_name = 'edc_pharmacy_dashboard/home.html'
-    navbar_name = 'pharma'
+    base_template_name = app_config.base_template_name or 'edc_base/base.html'
+    navbar_name = 'pharmacy_dashboard'
+    navbar_selected_item = 'pharmacy'
     app_config_name = 'edc_pharmacy_dashboard'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(
-            base_template_name=self.base_template_name,
-            prescription_listboard_url=app_config.prescription_listboard_url_name,
-            # dispense_appt_subjects_url=app_config.appointment_listboard_url_name,
-        )
+            prescribe_listboard_url_name=app_config.prescribe_listboard_url_name,
+            dispense_listboard_url_name=app_config.dispense_listboard_url_name)
         return context
 
     @method_decorator(login_required)

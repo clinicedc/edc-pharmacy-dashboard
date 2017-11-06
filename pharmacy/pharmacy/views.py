@@ -25,7 +25,7 @@ class AdministrationView(EdcBaseViewMixin, NavbarViewMixin, AppConfigViewMixin, 
     template_name = 'pharmacy/administration.html'
     app_config_name = 'pharmacy'
 
-    navbar_name = 'default'
+    navbar_name = 'pharmacy'
     navbar_selected_item = 'administration'
 
     @method_decorator(login_required)

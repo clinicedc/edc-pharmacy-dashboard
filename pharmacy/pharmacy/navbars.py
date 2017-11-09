@@ -4,8 +4,8 @@ pharmacy = Navbar(name='pharmacy')
 
 pharmacy.append_item(
     NavbarItem(name='pharmacy',
-               title='Pharmacy',
-               label='pharmacy',
+               title='pharmacy',
+               label='Pharmacy',
                fa_icon='fa-medkit',
                url_name=f'edc_pharmacy_dashboard:home_url'))
 

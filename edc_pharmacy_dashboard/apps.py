@@ -4,6 +4,8 @@ from django.apps import AppConfig as DjangoAppConfig
 
 class AppConfig(DjangoAppConfig):
     name = 'edc_pharmacy_dashboard'
+    verbose_name = 'Pharmacy Dashboard'
+    include_in_administration_section = False
     admin_site_name = 'edc_pharmacy_admin'
     template_path = 'edc_pharmacy_dashboard'
     url_namespace = 'edc_pharmacy_dashboard'

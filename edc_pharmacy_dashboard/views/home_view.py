@@ -3,13 +3,12 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic.base import TemplateView
 from edc_base.view_mixins import EdcBaseViewMixin
-from edc_dashboard.view_mixins import AppConfigViewMixin
 from edc_navbar import NavbarViewMixin
 
 app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
 
 
-class HomeView(EdcBaseViewMixin, NavbarViewMixin, AppConfigViewMixin, TemplateView):
+class HomeView(EdcBaseViewMixin, NavbarViewMixin, TemplateView):
 
     template_name = 'edc_pharmacy_dashboard/home.html'
     base_template_name = app_config.base_template_name or 'edc_base/base.html'

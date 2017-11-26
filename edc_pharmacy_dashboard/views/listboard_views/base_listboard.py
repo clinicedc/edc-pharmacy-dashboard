@@ -1,6 +1,6 @@
 from django.urls.base import reverse
 from edc_base.view_mixins import EdcBaseViewMixin
-from edc_dashboard.view_mixins import AppConfigViewMixin, ListboardFilterViewMixin
+from edc_dashboard.view_mixins import ListboardFilterViewMixin
 from edc_dashboard.views import ListboardView
 
 from ..mixins import UrlsViewMixin, ModelsViewMixin
@@ -8,7 +8,7 @@ from ..mixins import UrlsViewMixin, ModelsViewMixin
 
 class BaseListboardView(UrlsViewMixin,
                         ListboardFilterViewMixin,
-                        ModelsViewMixin, AppConfigViewMixin,
+                        ModelsViewMixin,
                         EdcBaseViewMixin, ListboardView):
 
     app_config_name = 'edc_pharmacy_dashboard'

@@ -7,7 +7,6 @@ from django.urls.base import reverse
 from django.utils.text import slugify
 from django.views.generic.base import TemplateView
 from edc_base.view_mixins import EdcBaseViewMixin
-from edc_dashboard.view_mixins import AppConfigViewMixin
 from edc_label.label import PrintLabelError
 from edc_label.print_server import PrintServerSelectPrinterError
 
@@ -22,8 +21,7 @@ app_name = 'edc_pharmacy_dashboard'
 app_config = django_apps.get_app_config(app_name)
 
 
-class BaseActionView(ModelsViewMixin, EdcBaseViewMixin,
-                     AppConfigViewMixin, TemplateView):
+class BaseActionView(ModelsViewMixin, EdcBaseViewMixin, TemplateView):
 
     template_name = 'edc_pharmacy_dashboard/home.html'
     post_url_name = None

@@ -7,7 +7,7 @@ from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
 from django.views.generic.base import TemplateView
 from edc_base.view_mixins import EdcBaseViewMixin
-from edc_dashboard.view_mixins import DashboardViewMixin
+from edc_dashboard.views import DashboardView as BaseDashboardView
 # from edc_pharmacy.dispense.dispense import Dispense
 # from edc_pharmacy.models import Prescription
 
@@ -76,6 +76,6 @@ class DispenseViewMixin(DispensePrintLabelMixin):
         return django_apps.get_model(self.prescription_model)
 
 
-class DispensingView(DispenseViewMixin, DashboardViewMixin,
-                     EdcBaseViewMixin, TemplateView):
+class DispensingView(DispenseViewMixin,
+                     EdcBaseViewMixin, BaseDashboardView):
     app_config_name = 'edc_pharmacy'

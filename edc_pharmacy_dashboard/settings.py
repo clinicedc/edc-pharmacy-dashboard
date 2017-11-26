@@ -28,9 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_js_reverse',
     'tz_detect',
-    'crispy_forms',
     'edc_base.apps.AppConfig',
     'edc_device.apps.AppConfig',
+    'edc_timepoint.apps.AppConfig',
     'edc_identifier.apps.AppConfig',
     'edc_protocol.apps.AppConfig',
     'edc_label.apps.AppConfig',
@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'tz_detect.middleware.TimezoneMiddleware',
+    'edc_dashboard.middleware.DashboardMiddleware'
 ]
 
 ROOT_URLCONF = 'edc_pharmacy_dashboard.urls'

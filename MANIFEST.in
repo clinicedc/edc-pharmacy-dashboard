@@ -1,2 +1,3 @@
-include AUTHORS CHANGES README.md LICENCE
+include AUTHORS CHANGES README LICENCE VERSION
 recursive-include edc_pharmacy_dashboard/templates/*
+recursive-include edc_pharmacy_dashboard/static/*

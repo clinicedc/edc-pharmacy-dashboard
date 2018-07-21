@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_js_reverse',
-    'tz_detect',
     'edc_base.apps.AppConfig',
     'edc_device.apps.AppConfig',
     'edc_timepoint.apps.AppConfig',
@@ -48,7 +47,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'tz_detect.middleware.TimezoneMiddleware',
     'edc_dashboard.middleware.DashboardMiddleware'
 ]
 

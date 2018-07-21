@@ -21,7 +21,7 @@ app_name = 'edc_pharmacy_dashboard'
 app_config = django_apps.get_app_config(app_name)
 
 
-class BaseActionView(ModelsViewMixin, EdcBaseViewMixin, TemplateView):
+class BaseActionView(EdcBaseViewMixin, ModelsViewMixin, TemplateView):
 
     template_name = 'edc_pharmacy_dashboard/home.html'
     post_url_name = None
@@ -58,8 +58,6 @@ class BaseActionView(ModelsViewMixin, EdcBaseViewMixin, TemplateView):
     def post_url(self):
         """Returns a URL.
         """
-        print(self.post_url_name,
-              " self.post_url_name self.post_url_name self.post_url_name")
         return reverse(self.post_url_name, kwargs=self.url_kwargs)
 
     def post(self, request, *args, **kwargs):

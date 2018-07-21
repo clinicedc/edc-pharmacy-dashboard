@@ -1,3 +1,11 @@
+.DS_Store
+.pydevproject
+.project
+.settings
+db.sqlite3
+pharmacy/db.sqlite3
+etc/
+static/django_js_reverse/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -99,3 +107,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+# .eclipse projects files
+.project
+.pydevproject

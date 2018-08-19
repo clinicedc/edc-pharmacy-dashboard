@@ -26,7 +26,7 @@ pharmacy_dashboard.append_item(
     NavbarItem(name='pharmacy',
                fa_icon='fa-medkit',
                no_url_namespace=no_url_namespace,
-               permission_codename='nav_pharmacy',
+               permission_codename='nav_pharmacy_section',
                url_name='edc_pharmacy_dashboard:home_url'))
 
 

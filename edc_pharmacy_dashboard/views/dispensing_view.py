@@ -11,7 +11,7 @@ from edc_dashboard.views import DashboardView as BaseDashboardView
 # from edc_pharmacy.dispense.dispense import Dispense
 # from edc_pharmacy.models import Prescription
 
-from .dispense_print_label_mixin import DispensePrintLabelMixin
+# from .dispense_print_label_mixin import DispensePrintLabelMixin
 
 
 style = color_style()
@@ -30,7 +30,8 @@ class DispenseForm(Form):
 app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
 
 
-class DispenseViewMixin(DispensePrintLabelMixin):
+# class DispenseViewMixin(DispensePrintLabelMixin):
+class DispenseViewMixin:
 
     dispense_cls = Dispense
     prescription_model = 'edc_pharmacy.prescription'

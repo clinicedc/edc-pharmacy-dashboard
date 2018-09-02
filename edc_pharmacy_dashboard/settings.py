@@ -127,6 +127,8 @@ GIT_DIR = BASE_DIR
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
+EDC_BOOTSTRAP = 3
+
 if 'test' in sys.argv:
 
     class DisableMigrations:

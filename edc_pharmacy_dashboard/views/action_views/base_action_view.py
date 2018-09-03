@@ -1,6 +1,7 @@
 import urllib
 
 from django.apps import apps as django_apps
+from django.conf import settings
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
@@ -23,7 +24,7 @@ app_config = django_apps.get_app_config(app_name)
 
 class BaseActionView(EdcBaseViewMixin, ModelsViewMixin, TemplateView):
 
-    template_name = 'edc_pharmacy_dashboard/home.html'
+    template_name = f'edc_pharmacy_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/home.html'
     post_url_name = None
     app_config_name = 'edc_pharmacy_dashboard'
 

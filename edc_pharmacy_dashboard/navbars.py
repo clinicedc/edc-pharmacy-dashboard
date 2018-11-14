@@ -12,6 +12,7 @@ navbar.append_item(
                label='Prescribe',
                glyphicon='glyphicon-edit',
                no_url_namespace=no_url_namespace,
+               permission_codename='edc_navbar.nav_pharmacy_prescribe',
                url_name='edc_pharmacy_dashboard:prescribe_listboard_url'))
 
 navbar.append_item(
@@ -20,13 +21,14 @@ navbar.append_item(
                label='Dispense',
                glyphicon='glyphicon-share',
                no_url_namespace=no_url_namespace,
+               permission_codename='edc_navbar.nav_pharmacy_dispense',
                url_name='edc_pharmacy_dashboard:dispense_listboard_url'))
 
 navbar.append_item(
     NavbarItem(name='pharmacy',
                fa_icon='fa-medkit',
                no_url_namespace=no_url_namespace,
-               permission_codename='nav_pharmacy_section',
+               permission_codename='edc_navbar.nav_pharmacy_section',
                url_name='edc_pharmacy_dashboard:home_url'))
 
 

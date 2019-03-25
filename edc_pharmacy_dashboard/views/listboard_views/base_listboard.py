@@ -6,29 +6,33 @@ from edc_dashboard.views import ListboardView
 from ..mixins import UrlsViewMixin, ModelsViewMixin
 
 
-class BaseListboardView(UrlsViewMixin,
-                        ListboardFilterViewMixin,
-                        ModelsViewMixin,
-                        EdcBaseViewMixin, ListboardView):
+class BaseListboardView(
+    UrlsViewMixin,
+    ListboardFilterViewMixin,
+    ModelsViewMixin,
+    EdcBaseViewMixin,
+    ListboardView,
+):
 
-    app_config_name = 'edc_pharmacy_dashboard'
-    navbar_name = 'pharmacy'
-    ordering = ['created']
+    app_config_name = "edc_pharmacy_dashboard"
+    navbar_name = "pharmacy"
+    ordering = ["created"]
 
     search_url_name = None
     listboard_url_name = None
     listboard_template_name = None
     action_name = None
     form_action_url_name = None
-    form_action_name = 'form_action'
-    form_action_selected_items_name = 'selected_items'
+    form_action_name = "form_action"
+    form_action_selected_items_name = "selected_items"
 
     @property
     def search_form_url(self):
         url = reverse(
             self.search_url_name or self.listboard_url_name,
-            kwargs=self.search_url_kwargs)
-        return f'{url}{self.querystring}'
+            kwargs=self.search_url_kwargs,
+        )
+        return f"{url}{self.querystring}"
 
     @property
     def search_url_kwargs(self):
@@ -46,13 +50,12 @@ class BaseListboardView(UrlsViewMixin,
     def form_action_url(self):
         return reverse(
             self.form_action_url_name or self.listboard_url_name,
-            kwargs=self.form_action_url_kwargs)
+            kwargs=self.form_action_url_kwargs,
+        )
 
     @property
     def listboard_url(self):
-        return reverse(
-            self.listboard_url_name,
-            kwargs=self.url_kwargs)
+        return reverse(self.listboard_url_name, kwargs=self.url_kwargs)
 
     def get_template_names(self):
         return [self.listboard_template_name]

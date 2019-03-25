@@ -3,20 +3,15 @@ from edc_dashboard.listboard_filter import ListboardFilter, ListboardViewFilters
 
 class WorklistListboardViewFilters(ListboardViewFilters):
 
-    all = ListboardFilter(
-        name='all',
-        position=0,
-        label='All',
-        lookup={})
+    all = ListboardFilter(name="all", position=0, label="All", lookup={})
 
     missed = ListboardFilter(
-        name='control',
-        position=10,
-        label='Control Arm',
-        lookup={'rx': True})
+        name="control", position=10, label="Control Arm", lookup={"rx": True}
+    )
 
     previous = ListboardFilter(
-        name='single_dose',
-        label='Single Dose',
+        name="single_dose",
+        label="Single Dose",
         position=20,
-        lookup={'singledose': True})
+        lookup={"singledose": True},
+    )

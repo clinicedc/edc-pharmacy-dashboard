@@ -7,13 +7,13 @@ from ...model_wrappers import PrescriptionModelWrapper
 from ..listboard_filters import PrescriptionListboardViewFilters
 from .base_listboard import BaseListboardView
 
-app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
+app_config = django_apps.get_app_config("edc_pharmacy_dashboard")
 
 
 class PrescribeListboardView(NavbarViewMixin, BaseListboardView):
 
-    navbar_selected_item = 'prescribe'
-    navbar_name = 'pharmacy_dashboard'
+    navbar_selected_item = "prescribe"
+    navbar_name = "pharmacy_dashboard"
 
     listboard_template_name = app_config.prescribe_listboard_template_name
     listboard_url_name = app_config.prescribe_listboard_url_name
@@ -35,6 +35,6 @@ class PrescribeListboardView(NavbarViewMixin, BaseListboardView):
 
     def get_queryset_filter_options(self, request, *args, **kwargs):
         options = super().get_queryset_filter_options(request, *args, **kwargs)
-        if kwargs.get('q'):
-            options.update(subject_identifier=kwargs.get('q'))
+        if kwargs.get("q"):
+            options.update(subject_identifier=kwargs.get("q"))
         return options

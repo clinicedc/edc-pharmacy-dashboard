@@ -1,19 +1,20 @@
 from django.apps import apps as django_apps
 from edc_model_wrapper import ModelWrapper
+
 # from edc_pharmacy import AppointmentDescriber
 # from edc_pharmacy.models import Prescription
 
 
-app_config = django_apps.get_app_config('edc_pharmacy_dashboard')
+app_config = django_apps.get_app_config("edc_pharmacy_dashboard")
 # edc_pharma_app_config = django_apps.get_app_config('edc_pharmacy')
 
 
 class AppointmentModelWrapper(ModelWrapper):
 
-    model = 'edc_pharmacy.dispenseappointment'
+    model = "edc_pharmacy.dispenseappointment"
     next_url_name = app_config.appointment_listboard_url_name
-    querystring_attrs = ['subject_identifier']
-    prescription_model = 'edc_pharmacy.prescription'
+    querystring_attrs = ["subject_identifier"]
+    prescription_model = "edc_pharmacy.prescription"
 
     @property
     def dispense_appt_describe(self):

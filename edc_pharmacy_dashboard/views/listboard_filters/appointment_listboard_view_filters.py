@@ -3,20 +3,12 @@ from edc_dashboard.listboard_filter import ListboardFilter, ListboardViewFilters
 
 class AppointmentListboardViewFilters(ListboardViewFilters):
 
-    all = ListboardFilter(
-        name='all',
-        position=0,
-        label='All',
-        lookup={})
+    all = ListboardFilter(name="all", position=0, label="All", lookup={})
 
     not_dispensed = ListboardFilter(
-        name='control',
-        position=10,
-        label='Control Arm',
-        lookup={'rx': True})
+        name="control", position=10, label="Control Arm", lookup={"rx": True}
+    )
 
     dispensed = ListboardFilter(
-        name='single_dose',
-        label='Single Dose',
-        position=20,
-        lookup={'rx': True})
+        name="single_dose", label="Single Dose", position=20, lookup={"rx": True}
+    )

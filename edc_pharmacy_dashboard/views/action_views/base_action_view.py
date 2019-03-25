@@ -18,22 +18,24 @@ class InvalidPostError(Exception):
     pass
 
 
-app_name = 'edc_pharmacy_dashboard'
+app_name = "edc_pharmacy_dashboard"
 app_config = django_apps.get_app_config(app_name)
 
 
 class BaseActionView(EdcBaseViewMixin, ModelsViewMixin, TemplateView):
 
-    template_name = f'edc_pharmacy_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/home.html'
+    template_name = (
+        f"edc_pharmacy_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/home.html"
+    )
     post_url_name = None
-    app_config_name = 'edc_pharmacy_dashboard'
+    app_config_name = "edc_pharmacy_dashboard"
 
     valid_form_actions = []
     redirect_querystring = {}
-    form_action_selected_items_name = 'selected_items'
+    form_action_selected_items_name = "selected_items"
     label_cls = None
 
-    navbar_name = 'pharma'
+    navbar_name = "pharma"
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -45,8 +47,9 @@ class BaseActionView(EdcBaseViewMixin, ModelsViewMixin, TemplateView):
         """Returns a list of selected listboard items.
         """
         if not self._selected_items:
-            self._selected_items = self.request.POST.getlist(
-                self.form_action_selected_items_name) or []
+            self._selected_items = (
+                self.request.POST.getlist(self.form_action_selected_items_name) or []
+            )
         return self._selected_items
 
     @property
@@ -62,17 +65,16 @@ class BaseActionView(EdcBaseViewMixin, ModelsViewMixin, TemplateView):
         return reverse(self.post_url_name, kwargs=self.url_kwargs)
 
     def post(self, request, *args, **kwargs):
-        action = slugify(self.request.POST.get('action', '').lower())
+        action = slugify(self.request.POST.get("action", "").lower())
         if action not in self.valid_form_actions:
-            raise InvalidPostError(
-                'Invalid form action in POST. Got {}'.format(action))
+            raise InvalidPostError("Invalid form action in POST. Got {}".format(action))
         else:
             self.action = action
         self.process_form_action()
         if self.redirect_querystring:
             return HttpResponseRedirect(
-                self.post_url + '?'
-                + urllib.parse.urlencode(self.redirect_querystring))
+                self.post_url + "?" + urllib.parse.urlencode(self.redirect_querystring)
+            )
         return HttpResponseRedirect(self.post_url)
 
     def process_form_action(self):
@@ -90,8 +92,8 @@ class BaseActionView(EdcBaseViewMixin, ModelsViewMixin, TemplateView):
                 label = self.label_cls(pk=pk, children_count=len(pks))
             except PrintServerSelectPrinterError as e:
                 messages.error(
-                    self.request,
-                    str(e), extra_tags='PrintServerSelectPrinterError')
+                    self.request, str(e), extra_tags="PrintServerSelectPrinterError"
+                )
                 break
             else:
                 try:
@@ -101,5 +103,6 @@ class BaseActionView(EdcBaseViewMixin, ModelsViewMixin, TemplateView):
                 else:
                     messages.success(
                         self.request,
-                        f'Printed {result.print_count}/{result.copies} {result.name} to '
-                        f'{result.printer}. JobID {result.jobid}')
+                        f"Printed {result.print_count}/{result.copies} {result.name} to "
+                        f"{result.printer}. JobID {result.jobid}",
+                    )

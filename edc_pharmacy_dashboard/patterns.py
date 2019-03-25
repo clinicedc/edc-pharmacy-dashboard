@@ -1,2 +1,2 @@
-subject_identifier = '092\-[0-9\-]+'  # noqa
-timepoint = ''
+subject_identifier = "092\-[0-9\-]+"  # noqa
+timepoint = ""

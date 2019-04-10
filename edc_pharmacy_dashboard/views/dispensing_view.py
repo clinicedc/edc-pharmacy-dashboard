@@ -5,15 +5,8 @@ from django.core.management.color import color_style
 from django.forms.forms import Form
 from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
-from django.views.generic.base import TemplateView
-from edc_base.view_mixins import EdcBaseViewMixin
+from edc_dashboard.view_mixins import EdcViewMixin
 from edc_dashboard.views import DashboardView as BaseDashboardView
-
-# from edc_pharmacy.dispense.dispense import Dispense
-# from edc_pharmacy.models import Prescription
-
-# from .dispense_print_label_mixin import DispensePrintLabelMixin
-
 
 style = color_style()
 
@@ -79,5 +72,5 @@ class DispenseViewMixin:
         return django_apps.get_model(self.prescription_model)
 
 
-class DispensingView(DispenseViewMixin, EdcBaseViewMixin, BaseDashboardView):
+class DispensingView(DispenseViewMixin, EdcViewMixin, BaseDashboardView):
     app_config_name = "edc_pharmacy"

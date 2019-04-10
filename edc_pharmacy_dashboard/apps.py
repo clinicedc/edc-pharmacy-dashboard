@@ -10,7 +10,7 @@ class AppConfig(DjangoAppConfig):
     template_path = "edc_pharmacy_dashboard"
     url_namespace = "edc_pharmacy_dashboard"
     dashboard_name = "edc_pharmacy_dashboard"
-    base_template_name = "edc_base/base.html"
+    base_template_name = "edc_dashboard/base.html"
 
     dashboard_url_name = f"{url_namespace}:home_url"
     home_url_name = f"{url_namespace}:home_url"

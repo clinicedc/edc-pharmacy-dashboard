@@ -1,5 +1,5 @@
 from django.urls.base import reverse
-from edc_base.view_mixins import EdcBaseViewMixin
+from edc_dashboard.view_mixins import EdcViewMixin
 from edc_dashboard.view_mixins import ListboardFilterViewMixin
 from edc_dashboard.views import ListboardView
 
@@ -10,7 +10,7 @@ class BaseListboardView(
     UrlsViewMixin,
     ListboardFilterViewMixin,
     ModelsViewMixin,
-    EdcBaseViewMixin,
+    EdcViewMixin,
     ListboardView,
 ):
 

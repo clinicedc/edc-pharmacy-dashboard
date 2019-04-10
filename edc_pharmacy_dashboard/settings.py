@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_js_reverse",
-    "edc_base.apps.AppConfig",
     "edc_device.apps.AppConfig",
     "edc_timepoint.apps.AppConfig",
     "edc_identifier.apps.AppConfig",

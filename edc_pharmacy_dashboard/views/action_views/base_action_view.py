@@ -7,7 +7,7 @@ from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
 from django.utils.text import slugify
 from django.views.generic.base import TemplateView
-from edc_base.view_mixins import EdcBaseViewMixin
+from edc_dashboard.view_mixins import EdcViewMixin
 from edc_label.label import PrintLabelError
 from edc_label.print_server import PrintServerSelectPrinterError
 
@@ -22,7 +22,7 @@ app_name = "edc_pharmacy_dashboard"
 app_config = django_apps.get_app_config(app_name)
 
 
-class BaseActionView(EdcBaseViewMixin, ModelsViewMixin, TemplateView):
+class BaseActionView(EdcViewMixin, ModelsViewMixin, TemplateView):
 
     template_name = (
         f"edc_pharmacy_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/home.html"

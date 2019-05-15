@@ -49,7 +49,8 @@ class DispenseViewMixin:
                 prescriptions.append(p)
         if not error_message:
             action = self.request.POST.get("action")
-            dispense = self.dispense_cls(prescriptions=prescriptions, action=action)
+            dispense = self.dispense_cls(
+                prescriptions=prescriptions, action=action)
             if dispense.printed_labels:
                 for label in dispense.printed_labels:
                     medication = label.get("medication")
@@ -74,3 +75,4 @@ class DispenseViewMixin:
 
 class DispensingView(DispenseViewMixin, EdcViewMixin, BaseDashboardView):
     app_config_name = "edc_pharmacy"
+    dashboard_url_name = "subject_dashboard_url"

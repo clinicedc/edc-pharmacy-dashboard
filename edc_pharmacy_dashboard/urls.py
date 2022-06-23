@@ -1,8 +1,6 @@
-# coding=utf-8
 from django.urls.conf import path
-from edc_pharmacy_dashboard.views import HomeView
-from edc_pharmacy_dashboard.views.listboard_views import PrescribeListboardView
 
+from .views import HomeView, PrescribeListboardView
 
 app_name = "edc_pharmacy_dashboard"
 

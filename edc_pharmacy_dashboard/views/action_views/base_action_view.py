@@ -1,14 +1,15 @@
 import urllib
 
 from django.apps import apps as django_apps
-from django.conf import settings
 from django.contrib import messages
 from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
 from django.utils.text import slugify
 from django.views.generic.base import TemplateView
+from edc_dashboard.utils import get_bootstrap_version
 from edc_dashboard.view_mixins import EdcViewMixin
-from edc_label.label import PrintLabelError
+
+# from edc_label.label import PrintLabelError
 from edc_label.print_server import PrintServerSelectPrinterError
 
 from ..mixins.models_view_mixin import ModelsViewMixin
@@ -25,7 +26,7 @@ app_config = django_apps.get_app_config(app_name)
 class BaseActionView(EdcViewMixin, ModelsViewMixin, TemplateView):
 
     template_name = (
-        f"edc_pharmacy_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/home.html"
+        f"edc_pharmacy_dashboard/bootstrap{get_bootstrap_version()}/home.html"
     )
     post_url_name = None
     app_config_name = "edc_pharmacy_dashboard"
@@ -44,8 +45,7 @@ class BaseActionView(EdcViewMixin, ModelsViewMixin, TemplateView):
 
     @property
     def selected_items(self):
-        """Returns a list of selected listboard items.
-        """
+        """Returns a list of selected listboard items."""
         if not self._selected_items:
             self._selected_items = (
                 self.request.POST.getlist(self.form_action_selected_items_name) or []
@@ -54,14 +54,12 @@ class BaseActionView(EdcViewMixin, ModelsViewMixin, TemplateView):
 
     @property
     def url_kwargs(self):
-        """Returns the default dictionary to reverse the post url. taixoo4M
-        """
+        """Returns the default dictionary to reverse the post url"""
         return {}
 
     @property
     def post_url(self):
-        """Returns a URL.
-        """
+        """Returns a URL."""
         return reverse(self.post_url_name, kwargs=self.url_kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -78,8 +76,7 @@ class BaseActionView(EdcViewMixin, ModelsViewMixin, TemplateView):
         return HttpResponseRedirect(self.post_url)
 
     def process_form_action(self):
-        """Override to conditionally handle the action POST attr.
-        """
+        """Override to conditionally handle the action POST attr."""
         pass
 
     def print_labels(self, pks=None):

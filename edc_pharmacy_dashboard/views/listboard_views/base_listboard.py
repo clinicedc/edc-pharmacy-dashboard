@@ -1,9 +1,9 @@
 from django.urls.base import reverse
 from edc_dashboard.view_mixins import EdcViewMixin
-from edc_dashboard.view_mixins import ListboardFilterViewMixin
-from edc_dashboard.views import ListboardView
+from edc_listboard.view_mixins import ListboardFilterViewMixin
+from edc_listboard.views import ListboardView
 
-from ..mixins import UrlsViewMixin, ModelsViewMixin
+from ..mixins import ModelsViewMixin, UrlsViewMixin
 
 
 class BaseListboardView(

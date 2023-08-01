@@ -16,6 +16,7 @@ project_settings = DefaultTestSettings(
     EDC_AUTH_SKIP_AUTH_UPDATER=True,
     BASE_DIR=base_dir,
     APP_NAME=app_name,
+    SUBJECT_VISIT_MODEL="edc_visit_tracking.subjectvisit",
     EXTRA_INSTALLED_APPS=[f"{app_name}.apps.AppConfig"],
     add_dashboard_middleware=True,
     add_lab_dashboard_middleware=True,

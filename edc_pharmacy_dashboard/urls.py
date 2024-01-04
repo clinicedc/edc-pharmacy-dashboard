@@ -10,9 +10,7 @@ urlpatterns = [
         PrescribeListboardView.as_view(),
         name="prescribe_listboard_url",
     ),
-    path(
-        r"rx/dispense/", PrescribeListboardView.as_view(), name="dispense_listboard_url"
-    ),
+    path(r"rx/dispense/", PrescribeListboardView.as_view(), name="dispense_listboard_url"),
     path("home/", HomeView.as_view(), name="home_url"),
     path("", HomeView.as_view(), name="home_url"),
 ]

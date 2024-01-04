@@ -1,7 +1,7 @@
 <!-- Modal -->
 
 <div id="dispenseMedicationModal-{{ page_obj.start_index|add:forloop.counter0 }}" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -24,11 +24,11 @@
                       <h5 class="panel-title">
                         <a role="button" href="#">
                         <small>
-                        <b>Start: </b>{{wrapped.object.appt_datetime | date:"Y-m-d"}} 
-                        <b>End: </b>{{wrapped.dispense_appt_describe.end_date | date:"Y-m-d"}} 
+                        <b>Start: </b>{{wrapped.object.appt_datetime | date:"Y-m-d"}}
+                        <b>End: </b>{{wrapped.dispense_appt_describe.end_date | date:"Y-m-d"}}
                         {{wrapped.dispense_appt_describe.start_day}}-{{wrapped.dispense_appt_describe.end_day}}
-                        <b>Next Appt:</b> 
-                            {% if wrapped.object.next_appt_datetime %} 
+                        <b>Next Appt:</b>
+                            {% if wrapped.object.next_appt_datetime %}
                                 {{wrapped.object.next_appt_datetime | date:"Y-m-d" }}
                             {% else %}
                                 <small>No future appt for this schedule.</small>
@@ -46,11 +46,11 @@
 	                                    <input type="checkbox" value="{{prescription.id}}" name="med_{{forloop.counter}}">
 	                                         <span class="text text-info">
 	                                            <b>Name:</b> {{prescription.description}}
-	                                         </span> 
+	                                         </span>
 	                                         <span class="text text-info">
                                                 <b></b>
                                              </span>
-                                             
+
                                              <span class="text text-info">
                                                 <b>, BW: </b>{{prescription.weight}} in Kg
                                              </span>
@@ -61,11 +61,11 @@
 	                                </div>
                                 </a>
                         {% endfor %}
-                        </div>            
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
       <div class="modal-footer">
          <button class="btn btn-default" type="submit">
             <i class="fa fa-print"></i> Select All

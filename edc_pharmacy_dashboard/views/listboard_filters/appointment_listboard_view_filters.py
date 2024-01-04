@@ -2,7 +2,6 @@ from edc_listboard.filters import ListboardFilter, ListboardViewFilters
 
 
 class AppointmentListboardViewFilters(ListboardViewFilters):
-
     all = ListboardFilter(name="all", position=0, label="All", lookup={})
 
     not_dispensed = ListboardFilter(

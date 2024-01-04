@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.urls.base import reverse
 from edc_dashboard.view_mixins import EdcViewMixin
 from edc_listboard.view_mixins import ListboardFilterViewMixin
@@ -13,7 +15,6 @@ class BaseListboardView(
     EdcViewMixin,
     ListboardView,
 ):
-
     app_config_name = "edc_pharmacy_dashboard"
     navbar_name = "pharmacy"
     ordering = ["created"]
@@ -60,9 +61,8 @@ class BaseListboardView(
     def get_template_names(self):
         return [self.listboard_template_name]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context.update(
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        kwargs.update(
             action_name=self.action_name,
             search_form_url=self.search_form_url,
             listboard_url=self.listboard_url,
@@ -70,4 +70,4 @@ class BaseListboardView(
             form_action_selected_items_name=self.form_action_selected_items_name,
             form_action_url=self.form_action_url,
         )
-        return context
+        return super().get_context_data(**kwargs)

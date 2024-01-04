@@ -9,13 +9,15 @@ from django.views.generic.base import TemplateView
 from edc_dashboard.utils import get_bootstrap_version
 from edc_dashboard.view_mixins import EdcViewMixin
 
-# from edc_label.label import PrintLabelError
-from edc_label.print_server import PrintServerSelectPrinterError
-
+from ...exceptions import PrintLabelError, PrintServerSelectPrinterError
 from ..mixins.models_view_mixin import ModelsViewMixin
 
 
 class InvalidPostError(Exception):
+    pass
+
+
+class PrintServerError(Exception):
     pass
 
 
@@ -24,10 +26,7 @@ app_config = django_apps.get_app_config(app_name)
 
 
 class BaseActionView(EdcViewMixin, ModelsViewMixin, TemplateView):
-
-    template_name = (
-        f"edc_pharmacy_dashboard/bootstrap{get_bootstrap_version()}/home.html"
-    )
+    template_name = f"edc_pharmacy_dashboard/bootstrap{get_bootstrap_version()}/home.html"
     post_url_name = None
     app_config_name = "edc_pharmacy_dashboard"
 

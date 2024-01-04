@@ -2,7 +2,6 @@ from edc_listboard.filters import ListboardFilter, ListboardViewFilters
 
 
 class PrescriptionListboardViewFilters(ListboardViewFilters):
-
     all = ListboardFilter(name="all", position=0, label="All", lookup={})
 
     missed = ListboardFilter(

@@ -17,7 +17,6 @@ class Dispense:
 
 
 class DispenseForm(Form):
-
     medications = forms.MultipleChoiceField()
 
 
@@ -26,7 +25,6 @@ app_config = django_apps.get_app_config("edc_pharmacy_dashboard")
 
 # class DispenseViewMixin(DispensePrintLabelMixin):
 class DispenseViewMixin:
-
     dispense_cls = Dispense
     prescription_model = "edc_pharmacy.prescription"
 
@@ -40,17 +38,14 @@ class DispenseViewMixin:
         error_message = None
         for key in self.request.POST:
             if key.startswith("med"):
-                p = self.prescription_model_cls.objects.get(
-                    id=self.request.POST.get(key)
-                )
+                p = self.prescription_model_cls.objects.get(id=self.request.POST.get(key))
                 if not p.dispense_appointment.is_dispensed:
                     error_message = "Dispensing is required before printing labels."
                     break
                 prescriptions.append(p)
         if not error_message:
             action = self.request.POST.get("action")
-            dispense = self.dispense_cls(
-                prescriptions=prescriptions, action=action)
+            dispense = self.dispense_cls(prescriptions=prescriptions, action=action)
             if dispense.printed_labels:
                 for label in dispense.printed_labels:
                     medication = label.get("medication")

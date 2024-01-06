@@ -1,11 +1,7 @@
 from django.apps import apps as django_apps
 from django.contrib import messages
 
-# from edc_pharmacy.medications import PrescriptionApprovalValidator, \
-#     PrescriptionApprovalValidatorError
-
 from .base_action_view import BaseActionView
-
 
 app_config = django_apps.get_app_config("edc_pharmacy_dashboard")
 edc_pharma_app_config = django_apps.get_app_config("edc_pharma")
@@ -20,7 +16,6 @@ class ApprovedPrescriptionError(Exception):
 
 
 class ApprovePrescriptionView(BaseActionView):
-
     post_url_name = app_config.listboard_url_name
     listboard_url_name = app_config.prescription_listboard_url_name
     valid_form_actions = ["approve_selected_prescription"]

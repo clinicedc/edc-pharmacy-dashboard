@@ -33,7 +33,3 @@
 #     @method_decorator(login_required)
 #     def dispatch(self, *args, **kwargs):
 #         return super().dispatch(*args, **kwargs)
-#
-#     def get_queryset_filter_options(self, request, *args, **kwargs):
-#         options = super().get_queryset_filter_options(request, *args, **kwargs)
-#         return options

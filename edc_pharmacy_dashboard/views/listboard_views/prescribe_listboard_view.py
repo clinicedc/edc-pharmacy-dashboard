@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from edc_navbar import NavbarViewMixin
 
-from ...model_wrappers import PrescriptionModelWrapper
 from ..listboard_filters import PrescriptionListboardViewFilters
 from .base_listboard import BaseListboardView
 
@@ -25,8 +24,7 @@ class PrescribeListboardView(NavbarViewMixin, BaseListboardView):
     listboard_url_name = app_config.prescribe_listboard_url_name
     listboard_view_filters = PrescriptionListboardViewFilters()
 
-    model = PrescriptionModelWrapper.model
-    model_wrapper_cls = PrescriptionModelWrapper
+    model = "edc_pharmacy.prescription"
 
     show_all = True
 

@@ -14,4 +14,3 @@ EDC Pharmacy Dashboard
 
 .. |coverage| image:: https://coveralls.io/repos/github/clinicedc/edc-pharmacy-dashboard/badge.svg?branch=develop
     :target: https://coveralls.io/github/clinicedc/edc-pharmacy-dashboard?branch=develop
-

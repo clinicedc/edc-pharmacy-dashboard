@@ -6,7 +6,6 @@ from django.http.response import HttpResponseRedirect
 from django.urls.base import reverse
 from django.utils.text import slugify
 from django.views.generic.base import TemplateView
-from edc_dashboard.utils import get_bootstrap_version
 from edc_dashboard.view_mixins import EdcViewMixin
 
 from ...exceptions import PrintLabelError, PrintServerSelectPrinterError
@@ -26,7 +25,7 @@ app_config = django_apps.get_app_config(app_name)
 
 
 class BaseActionView(EdcViewMixin, ModelsViewMixin, TemplateView):
-    template_name = f"edc_pharmacy_dashboard/bootstrap{get_bootstrap_version()}/home.html"
+    template_name = "edc_pharmacy_dashboard/home.html"
     post_url_name = None
     app_config_name = "edc_pharmacy_dashboard"
 
